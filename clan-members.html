@@ -154,8 +154,8 @@
         <div class="row-title" style="color: #970a0a;">LEADERSHIP</div>
         <div class="member-row-content">
             <div class="member">
-                <h3>Member 1</h3>
                 <img src="https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad" alt="">
+                <h3>Member 1</h3>
                 <p><span class="role-badge" style="background-color: #9c0606;">OWNER</span></p>
             </div>
         </div>
@@ -166,13 +166,13 @@
         <div class="row-title" style="color: #cc3333;">STAFF</div>
         <div class="member-row-content">
             <div class="member">
-                <h3>Member 2</h3>
                 <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
+                <h3>Member 2</h3>
                 <p><span class="role-badge" style="background-color: #ff0000;">Role: Admin</span></p>
             </div>
             <div class="member">
-                <h3>Member 3</h3>
                 <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
+                <h3>Member 3</h3>
                 <p><span class="role-badge" style="background-color: #ff0000;">Role: Admin</span></p>
             </div>
         </div>
@@ -183,13 +183,13 @@
         <div class="row-title" style="color: #a625ce;">MEMBERS</div>
         <div class="member-row-content">
             <div class="member">
-                <h3>Member 4</h3>
                 <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
+                <h3>Member 4</h3>
                 <p><span class="role-badge" style="background-color: #ff0000;">Role: Moderator</span></p>
             </div>
             <div class="member">
-                <h3>Member 5</h3>
                 <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
+                <h3>Member 5</h3>
                 <p><span class="role-badge" style="background-color: #ff0000;">Role: Moderator</span></p>
             </div>
         </div>
@@ -208,16 +208,20 @@
     }
 
     h3 {
-        margin-bottom: 10px;  /* Vzdálenost mezi jménem a obrázkem */
+        margin: 10px 0;  /* Vzdálenost mezi obrázkem a textem */
     }
 
     .member {
+        display: flex;
+        flex-direction: column; /* Uspořádání obrázku, textu a badge vertikálně */
+        align-items: center; /* Vycentrování obsahu horizontálně */
+        justify-content: center; /* Vycentrování obsahu vertikálně */
         text-align: center;  /* Umožní zarovnání obrázku a textu */
     }
 
     .member img {
         width: 100px;  /* Velikost obrázku */
         height: 100px;  /* Výška obrázku */
-        margin-top: 10px;  /* Vzdálenost mezi jménem a obrázkem */
+        margin-bottom: 10px;  /* Vzdálenost mezi obrázkem a textem */
     }
 </style>
