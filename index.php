@@ -3,7 +3,7 @@
 include('getPlayerData.php');
 
 // Zadej UUID hráče (můžeš to změnit, nebo ho načíst z formuláře nebo URL)
-$uuid = "c8f20c1a1b2244e7b85ffb340e3819b9";  // Zde zadej UUID hráče
+$uuid = "42ae944a-92d5-4fe3-b11b-5ea907d86aad";  // Zde zadej UUID hráče
 
 // Zavolání funkce pro získání dat o hráči
 $playerData = getPlayerData($uuid);
