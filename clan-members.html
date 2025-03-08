@@ -33,16 +33,16 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 40vh; /* Zmenšená výška horní části */
+            height: 35vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
 
-        /* Dolní sekce s šedým pozadím */
+
         .bottom-section {
-            background-color: #f4f4f4; /* Světle šedé pozadí */
+            background-color: #f4f4f4;
             padding: 50px 0;
         }
 
@@ -66,19 +66,6 @@
         .logo-container {
             display: flex;
             align-items: center;
-        }
-
-        /* Přidání šedého pozadí pro karty členů */
-        .member-card {
-            background-color: #f4f4f4; /* Světle šedé pozadí pro členy */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .member-card:hover {
-            transform: translateY(-10px); /* Efekt pro zvýraznění při najetí myší */
         }
     </style>
 </head>
@@ -107,22 +94,22 @@
     </div>
 
     <!-- Členi klanu (můžete přidat členy zde) -->
-    <div class="mt-8 bottom-section">
-        <div class="grid grid-cols-3 gap-6 px-8">
+    <div class="mt-8">
+        <div class="grid grid-cols-3 gap-6">
             <!-- Člen 1 -->
-            <div class="member-card">
+            <div class="bg-white p-4 rounded-lg shadow-lg">
                 <img src="https://via.placeholder.com/150" alt="Member 1" class="rounded-full mx-auto mb-4">
                 <h3 class="text-xl font-semibold">Member 1</h3>
                 <p class="text-gray-600">Role: PvP Specialist</p>
             </div>
             <!-- Člen 2 -->
-            <div class="member-card">
+            <div class="bg-white p-4 rounded-lg shadow-lg">
                 <img src="https://via.placeholder.com/150" alt="Member 2" class="rounded-full mx-auto mb-4">
                 <h3 class="text-xl font-semibold">Member 2</h3>
                 <p class="text-gray-600">Role: Strategist</p>
             </div>
             <!-- Člen 3 -->
-            <div class="member-card">
+            <div class="bg-white p-4 rounded-lg shadow-lg">
                 <img src="https://via.placeholder.com/150" alt="Member 3" class="rounded-full mx-auto mb-4">
                 <h3 class="text-xl font-semibold">Member 3</h3>
                 <p class="text-gray-600">Role: Tank</p>
