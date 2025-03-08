@@ -30,9 +30,18 @@
             transform: translateX(5px); /* Posunutí doprava při najetí */
             
         }
-    </style>
-</head>
-<body class="text-white">
+
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+}
+
+        body.loaded {
+            opacity: 1;
+}
+         </style>
+        </head>
+        <body class="text-white">
 
     <!-- Navbar -->
     <nav class="bg-[#060608] p-4 flex items-center">
@@ -52,4 +61,9 @@
     </nav>
 
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.classList.add("loaded");
+    });
+</script>
 </html>

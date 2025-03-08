@@ -256,5 +256,21 @@
     .member img:hover {
         transform: scale(1.1); /* Zvětšení obrázku při hover */
     }
+
+body {
+opacity: 0;
+transition: opacity 0.5s ease-in-out;
+}
+
+body.loaded {
+opacity: 1;
+}
+
 </style>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.classList.add("loaded");
+    });
+</script>
 
