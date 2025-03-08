@@ -67,14 +67,19 @@
         /* Flexbox pro členy */
         .members-container {
             display: flex;
-            flex-wrap: wrap; /* Umožní členům být vedle sebe i pod sebou */
-            justify-content: center;
+            flex-direction: column; /* Zajistí, že členové budou v různých řádcích */
             gap: 2rem;
             padding: 20px;
             background-color: #2c2c2c; /* Nastavení šedého pozadí pro tuto sekci */
         }
 
         /* Jednoduché zobrazení pro každého člena */
+        .member-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
         .member {
             text-align: center;
             width: 200px; /* Nastavíme šířku každého člena */
@@ -125,41 +130,50 @@
 
     <!-- Sekce s členy -->
     <div class="members-container">
-        <!-- Člen 1 -->
-        <div class="member">
-            <img src="https://vzge.me/uploads/skin1.png" alt="Member 1">
-            <h3>Member 1</h3>
-            <p>Role: PvP Specialist</p>
+        <!-- Řádek 1 -->
+        <div class="member-row">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin1.png" alt="Member 1">
+                <h3>Member 1</h3>
+                <p>Role: PvP Specialist</p>
+            </div>
         </div>
-        <!-- Člen 2 -->
-        <div class="member">
-            <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
-            <h3>Member 2</h3>
-            <p>Role: Strategist</p>
+        
+        <!-- Řádek 2 -->
+        <div class="member-row">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
+                <h3>Member 2</h3>
+                <p>Role: Strategist</p>
+            </div>
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
+                <h3>Member 3</h3>
+                <p>Role: Tank</p>
+            </div>
         </div>
-        <!-- Člen 3 -->
-        <div class="member">
-            <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
-            <h3>Member 3</h3>
-            <p>Role: Tank</p>
+        
+        <!-- Řádek 3 -->
+        <div class="member-row">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
+                <h3>Member 4</h3>
+                <p>Role: Healer</p>
+            </div>
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
+                <h3>Member 5</h3>
+                <p>Role: Tank</p>
+            </div>
         </div>
-        <!-- Člen 4 -->
-        <div class="member">
-            <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
-            <h3>Member 4</h3>
-            <p>Role: Healer</p>
-        </div>
-        <!-- Člen 5 -->
-        <div class="member">
-            <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
-            <h3>Member 5</h3>
-            <p>Role: Tank</p>
-        </div>
-        <!-- Člen 6 (Pro ukázku, jak to vypadá, když přidáte více členů) -->
-        <div class="member">
-            <img src="https://vzge.me/uploads/skin6.png" alt="Member 6">
-            <h3>Member 6</h3>
-            <p>Role: Archer</p>
+
+        <!-- Řádek 4 -->
+        <div class="member-row">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin6.png" alt="Member 6">
+                <h3>Member 6</h3>
+                <p>Role: Archer</p>
+            </div>
         </div>
     </div>
 
