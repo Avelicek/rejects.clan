@@ -11,29 +11,43 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
+            height: 100vh; /* Celá výška stránky */
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: relative;
         }
 
-        /* Vytvoření nové třídy pro text */
         .big-text {
             position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 30%;  /* Nastavení pozice textu vertikálně */
+            left: 50%; /* Nastavení pozice textu horizontálně */
+            transform: translateX(-50%); /* Vycentrování textu */
             font-size: 6rem;
             color: white;
             font-weight: bold;
+        }
+
+        .nav-link {
+            font-size: 1.25rem; /* Velikost textu odkazu */
+            color: white; /* Barva odkazu */
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .nav-link:hover {
+            color: #f472b6; /* Barva odkazu při najetí */
         }
     </style>
 </head>
 <body>
 
-    <!-- Použití třídy big-text pro tento text -->
+    <!-- Navigační odkazy -->
+    <nav>
+        <a href="home.html" class="nav-link">HOME</a>
+        <a href="about.html" class="nav-link">ABOUT</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+    </nav>
+
+    <!-- Text na pozadí -->
     <div class="big-text">
         LOVELY DOMINANCE
     </div>
