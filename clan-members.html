@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Pozadí pro horní část */
+        /* Horní část s obrázkovým pozadím */
         .top-background {
             background-image: url('https://i.imgur.com/ZCHPthN.png');
             background-size: cover;
@@ -35,21 +35,30 @@
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stín pro lepší čitelnost */
         }
+
+        /* Fixní menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="font-poppins">
 
-    <!-- Navbar -->
+    <!-- Fixní Navbar -->
     <nav class="bg-[#060608] p-4 flex items-center">
         <div class="flex items-center space-x-4">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
             <span class="font-bold text-lg uppercase text-white">LOVELY DOMINANCE</span>
         </div>
         <div class="ml-20 flex space-x-4 text-lg">
-            <a href="home.html" class="nav-link font-bold">HOME</a>
-            <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
-            <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
-            <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
+            <a href="home.html" class="nav-link font-bold text-white">HOME</a>
+            <a href="clan-members.html" class="nav-link font-bold text-white">CLAN MEMBERS</a>
+            <a href="informations.html" class="nav-link font-bold text-white">INFORMATIONS</a>
+            <a href="applications.html" class="nav-link font-bold text-white">APPLICATIONS</a>
         </div>
     </nav>
 
