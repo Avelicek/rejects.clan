@@ -15,10 +15,23 @@
         body {
             font-family: 'Poppins', sans-serif;
             /* Nastavení pozadí */
-            background-image: url('https://i.imgur.com/wyiufuB.png'); /* Změňte tuto cestu podle potřeby */
+            background-image: url('https://i.imgur.com/your-background.jpg'); /* Změňte na URL vašeho pozadí */
             background-size: cover;
             background-position: center;
             background-attachment: fixed; /* Udržuje pozadí pevně při rolování */
+        }
+
+        /* Styly pro odkazy v navigaci */
+        .nav-link {
+            font-size: 0.875rem; /* Zmenšení velikosti textu */
+            color: #d1d5db; /* Světle šedá barva */
+            transition: color 0.3s ease, transform 0.3s ease; /* Hladký přechod */
+        }
+
+        /* Efekt při najetí na odkaz (růžová barva) */
+        .nav-link:hover {
+            color: #f472b6; /* Růžová barva při najetí */
+            transform: translateX(5px); /* Posunutí doprava při najetí */
         }
     </style>
 </head>
@@ -28,16 +41,16 @@
     <nav class="bg-gray-800 p-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center space-x-2">
-            <!-- Zde je místo pro váš obrázek -->
-            <img src="C:\Users\Karlo\Desktop\LD_Web/LD_Logo.png" alt="Logo" class="w-20 h-20 rounded-lg">
+            <!-- Zde je místo pro váš obrázek (logo) -->
+            <img src="https://i.imgur.com/your-logo.png" alt="Logo" class="w-20 h-20 rounded-lg"> <!-- Změňte na URL vašeho loga -->
             <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
         </div>
 
         <!-- Odkazy -->
-        <div class="hidden md:flex space-x-6 text-lg">
-            <a href="#" class="hover:text-pink-500 font-semibold">CLAN MEMBERS</a>
-            <a href="#" class="hover:text-pink-500 font-semibold">INFORMATIONS</a>
-            <a href="#" class="hover:text-pink-500 font-semibold">APPLICATIONS</a>
+        <div class="hidden md:flex space-x-4 text-lg"> <!-- Zmenšili jsme space-x z 6 na 4 pro zúžení vzdálenosti -->
+            <a href="#" class="nav-link">CLAN MEMBERS</a>
+            <a href="#" class="nav-link">INFORMATIONS</a>
+            <a href="#" class="nav-link">APPLICATIONS</a>
         </div>
     </nav>
 
