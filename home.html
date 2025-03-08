@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Výchozí nastavení pro body */
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-image: url('https://i.imgur.com/ZCHPthN.png');
@@ -20,7 +20,7 @@
             transition: opacity 1s ease-in-out;
         }
 
-        /* Po úplném načtení stránky */
+
         body.loaded {
             opacity: 1;
         }
@@ -135,11 +135,12 @@
             <span>Instagram "(SOON)"</span>
         </a>
     </div>
-
+    
     <script>
-        window.onload = function() {
-            document.body.classList.add("loaded"); // Až je vše načteno, přidáme třídu 'loaded'
-        };
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("loaded");
+        });
     </script>
+    
 </body>
 </html>
