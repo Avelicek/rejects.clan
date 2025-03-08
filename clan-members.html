@@ -33,7 +33,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 60vh; /* Výška horní části */
+            height: 40vh; /* Zmenšená výška horní části */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -59,11 +59,9 @@
         }
 
         .nav-links {
-    display: flex;
-    gap: 1rem;
+            display: flex;
+            gap: 1rem;
         }
-
-    
 
         .logo-container {
             display: flex;
@@ -74,21 +72,19 @@
 <body class="text-white">
 
     <!-- Navbar -->
-    <nav class="bg-[#060608] p-4">
-        <div class="nav-container">
+    <nav class="bg-[#060608] p-4 flex items-center">
+        <div class="flex items-center space-x-4">
             <!-- Logo a text -->
-            <div class="logo-container">
-                <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
-                <span class="font-bold text-lg uppercase ml-4">LOVELY DOMINANCE</span>
-            </div>
+            <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
+            <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
+        </div>
 
-            <!-- Navigační odkazy -->
-            <div class="ml-20 flex space-x-4 text-lg nav-links">
-                <a href="home.html" class="nav-link font-bold">HOME</a>
-                <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
-                <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
-                <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
-            </div>
+        <!-- Navigační odkazy (zůstanou na levé straně) -->
+        <div class="ml-20 flex space-x-4 text-lg">
+            <a href="home.html" class="nav-link font-bold">HOME</a>
+            <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
+            <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
+            <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
         </div>
     </nav>
 
@@ -97,28 +93,26 @@
         <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">CLAN MEMBERS</h1>
     </div>
 
-        <!-- Členi klanu (můžete přidat členy zde) -->
-            <div class="mt-8">
-                <div class="grid grid-cols-3 gap-6">
-                    <!-- Člen 1 -->
-                    <div class="bg-white p-4 rounded-lg shadow-lg">
-                        <img src="https://via.placeholder.com/150" alt="Member 1" class="rounded-full mx-auto mb-4">
-                        <h3 class="text-xl font-semibold">Member 1</h3>
-                        <p class="text-gray-600">Role: PvP Specialist</p>
-                    </div>
-                    <!-- Člen 2 -->
-                    <div class="bg-white p-4 rounded-lg shadow-lg">
-                        <img src="https://via.placeholder.com/150" alt="Member 2" class="rounded-full mx-auto mb-4">
-                        <h3 class="text-xl font-semibold">Member 2</h3>
-                        <p class="text-gray-600">Role: Strategist</p>
-                    </div>
-                    <!-- Člen 3 -->
-                    <div class="bg-white p-4 rounded-lg shadow-lg">
-                        <img src="https://via.placeholder.com/150" alt="Member 3" class="rounded-full mx-auto mb-4">
-                        <h3 class="text-xl font-semibold">Member 3</h3>
-                        <p class="text-gray-600">Role: Tank</p>
-                    </div>
-                </div>
+    <!-- Členi klanu (můžete přidat členy zde) -->
+    <div class="mt-8">
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Člen 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <img src="https://via.placeholder.com/150" alt="Member 1" class="rounded-full mx-auto mb-4">
+                <h3 class="text-xl font-semibold">Member 1</h3>
+                <p class="text-gray-600">Role: PvP Specialist</p>
+            </div>
+            <!-- Člen 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <img src="https://via.placeholder.com/150" alt="Member 2" class="rounded-full mx-auto mb-4">
+                <h3 class="text-xl font-semibold">Member 2</h3>
+                <p class="text-gray-600">Role: Strategist</p>
+            </div>
+            <!-- Člen 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <img src="https://via.placeholder.com/150" alt="Member 3" class="rounded-full mx-auto mb-4">
+                <h3 class="text-xl font-semibold">Member 3</h3>
+                <p class="text-gray-600">Role: Tank</p>
             </div>
         </div>
     </div>
