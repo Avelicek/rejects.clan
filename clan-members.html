@@ -200,19 +200,21 @@
 <style>
     /* CSS pro obdélník kolem textu "Role: Majitel", "Role: Admin", atd. */
     .role-badge {
+        display: block;  /* Zajistí, že badge bude blokový prvek */
         color: white;  /* Barva textu */
-        padding: 5px 10px;  /* Zvětšené okraje kolem textu */
+        padding: 10px 15px;  /* Zvětšené okraje kolem textu */
         border-radius: 5px;  /* Zaoblení rohů */
         font-size: 1rem;  /* Zvětšená velikost písma */
-        margin-top: 151px;  /* Mírně větší vzdálenost mezi textem a badge */
+        margin-top: 20px;  /* Dostatečná vzdálenost mezi textem a badge */
         font-weight: bold; /* Tučný text pro roli */
     }
 
     h3 {
-        margin: 5px 0;  /* Mírně větší vzdálenost mezi obrázkem a textem */
+        margin: 0;  /* Odstranění výchozího marginu, aby byl přesně řízený prostor */
         font-weight: bold; /* Tučný text pro jméno člena */
         font-size: 1.2rem; /* Zvětšená velikost písma pro jméno */
         line-height: 1.4; /* Zajištění lepšího rozestupu mezi textem */
+        padding-bottom: 5px; /* Dodání malého prostoru pod text */
     }
 
     .member {
