@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LD │ Create Ticket & Recruitment</title>
+    <title>LD │ Ticket - Přihlášení do Členství</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -114,42 +114,24 @@
         </div>
     </nav>
 
-    <!-- Formulář pro Ticket a Recruitment -->
+    <!-- Formulář pro Ticket a Přihlášení do Členství -->
     <div class="container max-w-3xl mx-auto mt-10">
-        <h2 class="form-title">Vytvořte Ticket nebo Pošlete Nábor</h2>
+        <h2 class="form-title">Přihlášení do Členství v Lovely Dominance</h2>
 
-        <!-- Ticket Formulář -->
-        <h3 class="text-xl font-semibold text-white mb-5">Vytvořte Ticket</h3>
-        <form>
-            <input type="text" class="form-input" placeholder="Jméno" required>
-            <input type="email" class="form-input" placeholder="Email" required>
-            <textarea class="form-input" placeholder="Popis problému nebo návrhu" rows="5" required></textarea>
-            <select class="form-input" required>
-                <option value="">Vyberte typ ticketu</option>
-                <option value="bug">Bug</option>
-                <option value="suggestion">Návrh</option>
-                <option value="question">Otázka</option>
-            </select>
-            <button type="submit" class="form-button">Odeslat Ticket</button>
-        </form>
-
-        <hr class="my-8 border-t-2 border-[#444]">
-
-        <!-- Recruitment Formulář -->
-        <h3 class="text-xl font-semibold text-white mb-5">Pošlete Nábor</h3>
+        <!-- Formulář pro Ticket -->
         <form>
             <input type="text" class="form-input" placeholder="Jméno" required>
             <input type="email" class="form-input" placeholder="Email" required>
             <input type="text" class="form-input" placeholder="Discord Uživatel" required>
             <input type="text" class="form-input" placeholder="Věk" required>
+            <textarea class="form-input" placeholder="Proč bychom měli vybrat právě vás?" rows="5" required></textarea>
             <select class="form-input" required>
-                <option value="">Vyberte pozici</option>
-                <option value="admin">Admin</option>
-                <option value="recruiter">Recruiter</option>
-                <option value="member">Member</option>
+                <option value="">Jaká je vaše motivace připojit se k Lovely Dominance?</option>
+                <option value="competitive">Chci se podílet na kompetitivních aktivitách</option>
+                <option value="community">Chci být součástí přátelské komunity</option>
+                <option value="leadership">Chci pomáhat s vedením klubu</option>
             </select>
-            <textarea class="form-input" placeholder="Proč bychom měli vybrat vás?" rows="5" required></textarea>
-            <button type="submit" class="form-button">Odeslat Nábor</button>
+            <button type="submit" class="form-button">Odeslat Žádost o Členství</button>
         </form>
 
         <!-- Tlačítko pro návrat -->
