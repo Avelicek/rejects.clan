@@ -6,48 +6,33 @@
     <title>Klanová stránka</title>
 
     <style>
+        /* Základní nastavení pro stránku */
         body {
-            background-image: url('https://i.imgur.com/ZCHPthN.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh; /* Celá výška stránky */
             margin: 0;
-            position: relative;
+            padding: 0;
+            height: 100vh; /* Celková výška stránky */
+            background-image: url('https://i.imgur.com/ZCHPthN.png'); /* Nastavení pozadí */
+            background-size: cover; /* Pokrytí celé stránky */
+            background-position: center; /* Středování pozadí */
+            background-attachment: fixed; /* Pozadí bude pevné při rolování */
+            display: flex;
+            justify-content: center; /* Vycentrování obsahu */
+            align-items: center; /* Vertikální vycentrování */
+            text-align: center; /* Vycentrování textu */
         }
 
+        /* Velký text, který se objeví na stránce */
         .big-text {
-            position: absolute;
-            top: 30%;  /* Nastavení pozice textu vertikálně */
-            left: 50%; /* Nastavení pozice textu horizontálně */
-            transform: translateX(-50%); /* Vycentrování textu */
-            font-size: 6rem;
-            color: white;
-            font-weight: bold;
-        }
-
-        .nav-link {
-            font-size: 1.25rem; /* Velikost textu odkazu */
-            color: white; /* Barva odkazu */
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        .nav-link:hover {
-            color: #f472b6; /* Barva odkazu při najetí */
+            font-size: 8rem; /* Velikost textu */
+            color: white; /* Barva textu */
+            font-weight: bold; /* Tučný text */
+            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); /* Stín textu pro lepší viditelnost */
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigační odkazy -->
-    <nav>
-        <a href="home.html" class="nav-link">HOME</a>
-        <a href="about.html" class="nav-link">ABOUT</a>
-        <a href="contact.html" class="nav-link">CONTACT</a>
-    </nav>
-
-    <!-- Text na pozadí -->
+    <!-- Velký text na pozadí -->
     <div class="big-text">
         LOVELY DOMINANCE
     </div>
