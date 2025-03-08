@@ -16,16 +16,13 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            visibility: hidden; /* Skrýt obsah při načítání */
             opacity: 0;
-            transition: opacity 1s ease-in-out, visibility 0s 1s; /* Plynulé přechody pro opacity a visibility */
+            transition: opacity 1s ease-in-out;
         }
 
-        /* Jakmile se načte stránka, tělo bude viditelné */
+        /* Po úplném načtení stránky */
         body.loaded {
-            visibility: visible;
             opacity: 1;
-            transition: opacity 1s ease-in-out, visibility 0s 0s; /* Zpět k normálnímu chování */
         }
 
         .nav-link {
@@ -140,9 +137,9 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.body.classList.add("loaded");
-        });
+        window.onload = function() {
+            document.body.classList.add("loaded"); // Až je vše načteno, přidáme třídu 'loaded'
+        };
     </script>
 </body>
 </html>
