@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LovelyDominance Club Website</title>
+    <title>Klanová stránka</title>
+
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
 
@@ -12,17 +23,23 @@
     <nav class="bg-gray-800 p-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center space-x-2">
-            <div class="bg-pink-500 text-white font-bold p-2 rounded-lg">M</div>
-            <span class="font-bold text-lg">KLANWEB</span>
+            <div class="bg-pink-500 text-white font-bold p-2 rounded-lg text-xl">M</div>
+            <span class="font-bold text-lg uppercase">KLANWEB</span>
         </div>
 
         <!-- Odkazy -->
-        <div class="hidden md:flex space-x-6">
-            <a href="#" class="hover:text-pink-500">Clan Members</a>
-            <a href="#" class="hover:text-pink-500">Informations</a>
-            <a href="#" class="hover:text-pink-500">Recruitment</a>
+        <div class="hidden md:flex space-x-6 text-lg">
+            <a href="#" class="hover:text-pink-500 font-semibold">Clan Members</a>
+            <a href="#" class="hover:text-pink-500 font-semibold">Informations</a>
+            <a href="#" class="hover:text-pink-500 font-semibold">Recruitment</a>
         </div>
 
         <!-- Přihlášení -->
         <div class="flex items-center space-x-4">
-            <span class="text-gray-400 text-sm">Current
+            <span class="text-gray-400 text-sm">Currently not logged in</span>
+            <button class="bg-pink-500 px-4 py-2 rounded-lg hover:bg-pink-600 text-lg font-semibold">Log in</button>
+        </div>
+    </nav>
+
+</body>
+</html>
