@@ -21,9 +21,6 @@
         }
 
 
-        body.loaded {
-            opacity: 1;
-        }
 
         .nav-link {
             font-size: 0.875rem;
@@ -135,7 +132,18 @@
             <span>Instagram "(SOON)"</span>
         </a>
     </div>
-    
+
+    <style>
+        
+        body {
+opacity: 0;
+transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+opacity: 1;
+}
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
