@@ -12,6 +12,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        /* Styly pro odkazy v navigaci */
+        .nav-link {
+            font-size: 0.875rem; /* Zmenšení velikosti textu */
+            color: #6f6f70; /* Světle šedá barva */
+            transition: color 0.3s ease, transform 0.3s ease; /* Hladký přechod */
+        }
+
+        /* Efekt při najetí na odkaz (růžová barva) */
+        .nav-link:hover {
+            color: #e92fd0; /* Růžová barva při najetí */
+            transform: translateX(5px); /* Posunutí doprava při najetí */
+        }
+
         /* Horní část s obrázkovým pozadím */
         .top-background {
             background-image: url('https://i.imgur.com/ZCHPthN.png');
