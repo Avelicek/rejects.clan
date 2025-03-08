@@ -3,46 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LD │ Clan Members</title>
+    <title>Clan Members</title>
 
+    <!-- Google Fonts (Poppins) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        /* Pozadí pro horní část */
+        .top-background {
             background-image: url('https://i.imgur.com/ZCHPthN.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            padding: 100px 0; /* Vytvoříme místo pro text */
         }
 
-        /* Styly pro odkazy v navigaci */
-        .nav-link {
-            font-size: 0.875rem; /* Zmenšení velikosti textu */
-            color: #6f6f70; /* Světle šedá barva */
-            transition: color 0.3s ease, transform 0.3s ease; /* Hladký přechod */
+        /* Šedé pozadí pro spodní část */
+        .bottom-background {
+            background-color: #f7f7f7; /* Světle šedá barva */
+            padding: 50px 0; /* Prostor pro členy klanu */
         }
 
-        /* Efekt při najetí na odkaz (růžová barva) */
-        .nav-link:hover {
-            color: #e92fd0; /* Růžová barva při najetí */
-            transform: translateX(5px); /* Posunutí doprava při najetí */
-
+        /* Styling pro text nad pozadím */
+        .heading {
+            text-align: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stín pro lepší čitelnost */
         }
     </style>
 </head>
-<body class="text-white">
+<body class="font-poppins">
 
     <!-- Navbar -->
     <nav class="bg-[#060608] p-4 flex items-center">
-        <!-- Logo a text -->
         <div class="flex items-center space-x-4">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
-            <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
+            <span class="font-bold text-lg uppercase text-white">LOVELY DOMINANCE</span>
         </div>
-
-        <!-- Odkazy, které se posunou dál od loga -->
         <div class="ml-20 flex space-x-4 text-lg">
             <a href="home.html" class="nav-link font-bold">HOME</a>
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
@@ -50,6 +52,28 @@
             <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
         </div>
     </nav>
+
+    <!-- Horní část s obrázkovým pozadím -->
+    <div class="top-background">
+        <h1 class="heading">Clan Members</h1>
+    </div>
+
+    <!-- Spodní část se šedým pozadím pro členy klanu -->
+    <div class="bottom-background">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Meet Our Clan Members</h2>
+            <!-- Seznam členů klanu (můžeš přidat členy do seznamu) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Příklad člena klanu -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Clan Member" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-center">John Doe</h3>
+                    <p class="text-center text-gray-500">Member since 2021</p>
+                </div>
+                <!-- Přidej další členy podle potřeby -->
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
