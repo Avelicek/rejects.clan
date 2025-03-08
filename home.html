@@ -15,6 +15,12 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
         }
 
         .nav-link {
@@ -43,38 +49,37 @@
             position: relative;
             z-index: 10;
         }
+        
 
-        /* CSS proměnná pro nastavení barvy textu */
         :root {
-            --social-text-color: #ffffff; /* Výchozí barva textu */
+            --social-text-color: #ffffff;
         }
 
-        /* Styl pro sekci s odkazy na sociální média */
+
         .social-links {
-            position: fixed; /* Fixní pozicování */
-            bottom: 20px; /* Vzdálenost od spodního okraje */
-            left: 20px; /* Vzdálenost od levého okraje */
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
             display: flex;
-            flex-direction: column; /* Odkazy budou zobrazeny vertikálně */
-            gap: 20px; /* Mezera mezi odkazy */
+            flex-direction: column;
+            gap: 20px;
         }
 
         .social-link {
             display: flex;
-            align-items: center; /* Uspořádání ikony a textu na stejné úrovni */
-            text-decoration: none; /* Odstranění podtržení */
-            color: var(--social-text-color); /* Barva textu - používá proměnnou */
-            transition: color 0.3s ease; /* Přechodová animace pro změnu barvy textu */
+            align-items: center;
+            text-decoration: none;
+            color: var(--social-text-color);
+            transition: color 0.3s ease;
         }
 
         .social-icon {
-            margin-right: 10px; /* Mezera mezi ikonou a textem */
+            margin-right: 10px;
         }
 
         .youtube-icon {
-            width: 34px; /* Velikost YouTube ikony (širší) */
-            height: 34px; /* Výška YouTube ikony */
-            object-fit: contain;
+            width: 80px;
+            height: auto;
         }
 
         .instagram-icon {
@@ -84,23 +89,23 @@
         }
 
         .social-link span {
-            font-size: 1.2rem; /* Velikost textu */
-            font-weight: bold; /* Tučný text */
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
-        /* Efekt na hover pro text, změna barvy na červenou */
+
         .social-link:hover span {
-            color: red; /* Změna barvy textu na červenou při najetí myší */
+            color: red;
         }
 
         .social-link:hover {
-            opacity: 0.7; /* Efekt na hover pro odkaz */
+            opacity: 0.7;
         }
 
 
     </style>
 </head>
-    <body class="text-white">
+<body class="text-white">
 
     <!-- Navigace -->
     <nav class="bg-[#060608] p-4 flex items-center">
@@ -124,30 +129,21 @@
 
 
     <div class="social-links">
-        <a href="home.html" target="_blank" class="social-link">
+        <a href="https://www.youtube.com" target="_blank" class="social-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="social-icon youtube-icon">
             <span>YouTube "(SOON)"</span>
         </a>
-        <a href="home.html" target="_blank" class="social-link">
+        <a href="https://www.instagram.com" target="_blank" class="social-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon instagram-icon">
             <span>Instagram "(SOON)"</span>
         </a>
     </div>
-<style>
-    
-    body {
-opacity: 0;
-transition: opacity 1s ease-in-out;
-}
 
-body.loaded {
-opacity: 1;
-}
-</style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("loaded");
+        });
+    </script>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.body.classList.add("loaded");
-    });
-</script>
 </html>
