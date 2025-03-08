@@ -46,7 +46,7 @@
 
         /* CSS proměnná pro nastavení barvy textu */
         :root {
-            --social-text-color: #ffffff; /* Výchozí barva textu */
+            --social-text-color: #333; /* Výchozí barva textu */
         }
 
         /* Styl pro sekci s odkazy na sociální média */
@@ -64,6 +64,7 @@
             align-items: center; /* Uspořádání ikony a textu na stejné úrovni */
             text-decoration: none; /* Odstranění podtržení */
             color: var(--social-text-color); /* Barva textu - používá proměnnou */
+            transition: color 0.3s ease; /* Přechodová animace pro změnu barvy textu */
         }
 
         .social-icon {
@@ -77,10 +78,14 @@
             font-weight: bold; /* Tučný text */
         }
 
+        /* Efekt na hover pro text, změna barvy na červenou */
+        .social-link:hover span {
+            color: red; /* Změna barvy textu na červenou při najetí myší */
+        }
+
         .social-link:hover {
             opacity: 0.7; /* Efekt na hover pro odkaz */
         }
-
     </style>
 </head>
 <body class="text-white">
@@ -107,13 +112,13 @@
 
     <!-- Odkazy na sociální média - Umístěné v levém dolním rohu -->
     <div class="social-links">
-        <a href="" target="_blank" class="social-link">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="social-icon">
-            <span>YouTube "(Soon)"</span>
+        <a href="https://www.youtube.com" target="_blank" class="social-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/600px-YouTube_icon_%282013-2017%29.png" alt="YouTube" class="social-icon">
+            <span>YouTube</span>
         </a>
-        <a href="" target="_blank" class="social-link">
+        <a href="https://www.instagram.com" target="_blank" class="social-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon">
-            <span>Instagram "(Soon)"</span>
+            <span>Instagram</span>
         </a>
     </div>
 
