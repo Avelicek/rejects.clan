@@ -96,6 +96,16 @@
         .social-link:hover {
             opacity: 0.7; /* Efekt na hover pro odkaz */
         }
+
+        body {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+        body.loaded {
+    opacity: 1;
+}
+
     </style>
 </head>
 <body class="text-white">
@@ -131,6 +141,11 @@
             <span>Instagram "(SOON)"</span>
         </a>
     </div>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("loaded");
+        });
+    </script>
+    
 </body>
 </html>
