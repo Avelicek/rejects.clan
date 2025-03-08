@@ -143,66 +143,75 @@
         <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">CLAN MEMBERS</h1>
     </div>
 
-    <!-- Sekce s členy -->
-    <div class="members-container">
-        <!-- Řádek 1: Majitelé -->
-        <div class="member-row">
-            <div class="row-title" style="color: #970a0a;">LEADERSHIP</div>
-            <div class="member-row-content">
-                <div class="member">
-                    <img src="https://vzge.me/uploads/skin1.png" alt="Member 1">
-                    <h3>Member 1</h3>
-                    <p>Role: Majitel</p>
-                </div>
+<!-- Sekce s členy -->
+<div class="members-container">
+    <!-- Řádek 1: Majitelé -->
+    <div class="member-row">
+        <div class="row-title" style="color: #970a0a;">LEADERSHIP</div>
+        <div class="member-row-content">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin1.png" alt="Member 1">
+                <h3>Member 1</h3>
+                <p><span class="role-badge">Role: Majitel</span></p>
             </div>
         </div>
-        
-        <!-- Řádek 2: Admini -->
-        <div class="member-row">
-            <div class="row-title" style="color: #cc3333;">Staff</div>
-            <div class="member-row-content">
-                <div class="member">
-                    <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
-                    <h3>Member 2</h3>
-                    <p>Role: Admin</p>
-                </div>
-                <div class="member">
-                    <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
-                    <h3>Member 3</h3>
-                    <p>Role: Admin</p>
-                </div>
+    </div>
+    
+    <!-- Řádek 2: Admini -->
+    <div class="member-row">
+        <div class="row-title" style="color: #cc3333;">Staff</div>
+        <div class="member-row-content">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
+                <h3>Member 2</h3>
+                <p><span class="role-badge">Role: Admin</span></p>
+            </div>
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
+                <h3>Member 3</h3>
+                <p><span class="role-badge">Role: Admin</span></p>
             </div>
         </div>
-        
-        <!-- Řádek 3: Moderátoři -->
-        <div class="member-row">
-            <div class="row-title" style="color: #a625ce;">Members</div>
-            <div class="member-row-content">
-                <div class="member">
-                    <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
-                    <h3>Member 4</h3>
-                    <p>Role: Moderator</p>
-                </div>
-                <div class="member">
-                    <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
-                    <h3>Member 5</h3>
-                    <p>Role: Moderator</p>
-                </div>
+    </div>
+    
+    <!-- Řádek 3: Moderátoři -->
+    <div class="member-row">
+        <div class="row-title" style="color: #a625ce;">Members</div>
+        <div class="member-row-content">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
+                <h3>Member 4</h3>
+                <p><span class="role-badge">Role: Moderator</span></p>
             </div>
-        </div>
-
-        <!-- Řádek 4: Další -->
-        <div class="member-row">
-            <div class="row-title" style="color: #d147ca;">Trial Members</div>
-            <div class="member-row-content">
-                <div class="member">
-                    <img src="https://vzge.me/uploads/skin6.png" alt="Member 6">
-                    <h3>Member 6</h3>
-                    <p>Role: Support</p>
-                </div>
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
+                <h3>Member 5</h3>
+                <p><span class="role-badge">Role: Moderator</span></p>
             </div>
         </div>
     </div>
 
-</body>
-</html>
+    <!-- Řádek 4: Další -->
+    <div class="member-row">
+        <div class="row-title" style="color: #d147ca;">Trial Members</div>
+        <div class="member-row-content">
+            <div class="member">
+                <img src="https://vzge.me/uploads/skin6.png" alt="Member 6">
+                <h3>Member 6</h3>
+                <p><span class="role-badge">Role: Support</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* CSS pro obdélník kolem textu "Role: Majitel", "Role: Admin", atd. */
+    .role-badge {
+        background-color: #FF5733;  /* Změnit barvu pozadí podle potřeby */
+        color: white;  /* Barva textu */
+        padding: 5px 10px;  /* Okraje kolem textu */
+        border-radius: 20px;  /* Zaoblení rohů */
+        font-size: 0.9rem;  /* Velikost písma */
+    }
+</style>
+
