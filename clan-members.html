@@ -11,12 +11,11 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-image: url('https://i.imgur.com/ZCHPthN.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
         }
 
+        /* Styly pro odkazy v navigaci */
         .nav-link {
             font-size: 0.875rem;
             color: #6f6f70;
@@ -28,15 +27,23 @@
             transform: translateX(5px);
         }
 
-        .background-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5rem;
-            color: white;
-            font-weight: bold;
-            z-index: 1;
+        /* Horní sekce s pozadím */
+        .top-section {
+            background-image: url('https://i.imgur.com/ZCHPthN.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 60vh; /* Výška horní části */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Dolní sekce s šedým pozadím */
+        .bottom-section {
+            background-color: #f4f4f4; /* Světle šedé pozadí */
+            padding: 50px 0;
         }
 
         nav {
@@ -44,75 +51,77 @@
             z-index: 10;
         }
 
-        /* Styl pro spodní šedou část */
-        .bottom-background {
-            background-color: #f7f7f7; /* Světle šedá barva */
-            padding: 50px 0; /* Prostor pro členy klanu */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
-        /* Styling pro členy klanu */
-        .clan-member-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .nav-links {
+            display: flex;
+            space-x-4;
         }
 
-        /* Třída pro obrázky členů */
-        .clan-member-img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 10px;
+        .logo-container {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body class="text-white">
 
     <!-- Navbar -->
-    <nav class="bg-[#060608] p-4 flex items-center">
-        <div class="flex items-center space-x-4">
-            <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
-            <span class="font-bold text-lg uppercase text-white">LOVELY DOMINANCE</span>
-        </div>
-        <div class="ml-20 flex space-x-4 text-lg">
-            <a href="home.html" class="nav-link font-bold text-white">HOME</a>
-            <a href="clan-members.html" class="nav-link font-bold text-white">CLAN MEMBERS</a>
-            <a href="informations.html" class="nav-link font-bold text-white">INFORMATIONS</a>
-            <a href="applications.html" class="nav-link font-bold text-white">APPLICATIONS</a>
+    <nav class="bg-[#060608] p-4">
+        <div class="nav-container">
+            <!-- Logo a text -->
+            <div class="logo-container">
+                <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
+                <span class="font-bold text-lg uppercase ml-4">LOVELY DOMINANCE</span>
+            </div>
+
+            <!-- Navigační odkazy -->
+            <div class="ml-20 flex space-x-4 text-lg nav-links">
+                <a href="home.html" class="nav-link font-bold">HOME</a>
+                <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
+                <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
+                <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Text nad pozadím -->
-    <div class="text-center p-10" style="padding-top: 50px;">
-        <h1 class="text-8xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">Minemen PvP Clan</h1>
+    <!-- Horní sekce s obrázkovým pozadím -->
+    <div class="top-section">
+        <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">Minemen PvP Clan</h1>
     </div>
 
-    <!-- Spodní šedá část s členy klanu -->
-    <div class="bottom-background">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Meet Our Clan Members</h2>
-            <!-- Seznam členů klanu -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Člen 1 -->
-                <div class="clan-member-card">
-                    <img src="https://via.placeholder.com/150" alt="Clan Member" class="clan-member-img">
-                    <h3 class="text-xl font-semibold">John Doe</h3>
-                    <p class="text-gray-600">Member since 2021</p>
-                </div>
-                <!-- Člen 2 -->
-                <div class="clan-member-card">
-                    <img src="https://via.placeholder.com/150" alt="Clan Member" class="clan-member-img">
-                    <h3 class="text-xl font-semibold">Jane Smith</h3>
-                    <p class="text-gray-600">Member since 2020</p>
-                </div>
-                <!-- Člen 3 -->
-                <div class="clan-member-card">
-                    <img src="https://via.placeholder.com/150" alt="Clan Member" class="clan-member-img">
-                    <h3 class="text-xl font-semibold">Alice Brown</h3>
-                    <p class="text-gray-600">Member since 2022</p>
+    <!-- Dolní sekce s šedým pozadím pro členy klanu -->
+    <div class="bottom-section">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-gray-800">Clan Members</h2>
+            <p class="text-lg text-gray-600 mt-4">Here are the members of our PvP clan!</p>
+
+            <!-- Členi klanu (můžete přidat členy zde) -->
+            <div class="mt-8">
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- Člen 1 -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Member 1" class="rounded-full mx-auto mb-4">
+                        <h3 class="text-xl font-semibold">Member 1</h3>
+                        <p class="text-gray-600">Role: PvP Specialist</p>
+                    </div>
+                    <!-- Člen 2 -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Member 2" class="rounded-full mx-auto mb-4">
+                        <h3 class="text-xl font-semibold">Member 2</h3>
+                        <p class="text-gray-600">Role: Strategist</p>
+                    </div>
+                    <!-- Člen 3 -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Member 3" class="rounded-full mx-auto mb-4">
+                        <h3 class="text-xl font-semibold">Member 3</h3>
+                        <p class="text-gray-600">Role: Tank</p>
+                    </div>
                 </div>
             </div>
         </div>
