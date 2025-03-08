@@ -16,8 +16,9 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            margin: 0;
+            padding: 0;
+            background-color: #2c2c2c;
         }
 
 
@@ -134,59 +135,20 @@
     </div>
 
     <style>
-        /* CSS pro obdélník kolem textu "Role: Majitel", "Role: Admin", atd. */
-        .role-badge {
-            display: block;  /* Zajistí, že badge bude blokový prvek */
-            color: white;  /* Barva textu */
-            padding: 5px 10px;  /* Zvětšené okraje kolem textu */
-            border-radius: 5px;  /* Zaoblení rohů */
-            font-size: 1rem;  /* Zvětšená velikost písma */
-            margin-top: 5px;  /* Dostatečná vzdálenost mezi textem a badge */
-            font-weight: bold; /* Tučný text pro roli */
-        }
-    
-        h3 {
-            margin: 0;  /* Odstranění výchozího marginu, aby byl přesně řízený prostor */
-            font-weight: bold; /* Tučný text pro jméno člena */
-            font-size: 1.2rem; /* Zvětšená velikost písma pro jméno */
-            line-height: 1.4; /* Zajištění lepšího rozestupu mezi textem */
-            padding-bottom: 5px; /* Dodání malého prostoru pod text */
-        }
-    
-        .member {
-            display: flex;
-            flex-direction: column; /* Uspořádání obrázku, textu a badge vertikálně */
-            align-items: center; /* Vycentrování obsahu horizontálně */
-            justify-content: center; /* Vycentrování obsahu vertikálně */
-            text-align: center;  /* Umožní zarovnání obrázku a textu */
-        }
-    
-        .member img {
-            width: 120px;  /* Zvětšená velikost obrázku */
-            height: 120px;  /* Zvětšená výška obrázku */
-            margin-bottom: -5px;  /* Mírná vzdálenost mezi obrázkem a textem */
-            transition: transform 0.3s ease; /* Plynulý přechod pro transformaci */
-        }
-    
-        .member img:hover {
-            transform: scale(1.1); /* Zvětšení obrázku při hover */
-        }
-    
-    body {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    }
-    
-    body.loaded {
-    opacity: 1;
-    }
-    
-    </style>
-    </body>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.body.classList.add("loaded");
-        });
-    </script>
-    
-    
+        
+        body {
+opacity: 0;
+transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+opacity: 1;
+}
+</style>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.classList.add("loaded");
+    });
+</script>
+
