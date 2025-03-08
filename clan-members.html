@@ -13,6 +13,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4; /* Nastavíme šedé pozadí pro celou stránku */
         }
 
         /* Styly pro odkazy v navigaci */
@@ -40,12 +41,7 @@
             text-align: center;
         }
 
-        /* Dolní sekce s šedým pozadím */
-        .bottom-section {
-            background-color: #f4f4f4;
-            padding: 50px 0;
-        }
-
+        /* Navbar */
         nav {
             position: relative;
             z-index: 10;
@@ -68,13 +64,13 @@
             align-items: center;
         }
 
-        /* Přidání šedého pozadí pro karty členů */
+        /* Karty členů bez speciálního pozadí */
         .member-card {
-            background-color: #f4f4f4; /* Světle šedé pozadí pro členy */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            background-color: white; /* Pro členy necháme bílé pozadí */
         }
 
         .member-card:hover {
@@ -106,8 +102,8 @@
         <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">CLAN MEMBERS</h1>
     </div>
 
-    <!-- Sekce s členy a šedým pozadím -->
-    <div class="mt-8 bottom-section">
+    <!-- Sekce s členy (bez jakéhokoli speciálního pozadí pro členy) -->
+    <div class="mt-8">
         <div class="grid grid-cols-3 gap-6 px-8">
             <!-- Člen 1 -->
             <div class="member-card">
