@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-image: url('https://i.imgur.com/ZCHPthN.png');
@@ -19,6 +20,8 @@
             padding: 0;
             background-color: #2c2c2c;
         }
+
+
 
         .nav-link {
             font-size: 0.875rem;
@@ -47,7 +50,7 @@
             z-index: 10;
         }
 
-
+        /* Sociální odkazy */
         .social-links {
             position: fixed;
             bottom: 20px;
@@ -93,20 +96,11 @@
         .social-link:hover {
             opacity: 0.7;
         }
-
-
-        body {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        body.loaded {
-            opacity: 1;
-        }
     </style>
 </head>
 <body class="text-white">
 
+    <!-- Navigace -->
     <nav class="bg-[#060608] p-4 flex items-center">
         <div class="flex items-center space-x-4">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
@@ -114,21 +108,21 @@
         </div>
 
         <div class="ml-20 flex space-x-4 text-lg">
-            <a href="home.html" class="nav-link font-bold" id="home-link">HOME</a>
-            <a href="clan-members.html" class="nav-link font-bold" id="clan-members-link">CLAN MEMBERS</a>
-            <a href="informations.html" class="nav-link font-bold" id="informations-link">INFORMATIONS</a>
-            <a href="applications.html" class="nav-link font-bold" id="applications-link">APPLICATIONS</a>
+            <a href="home.html" class="nav-link font-bold">HOME</a>
+            <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
+            <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
+            <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
         </div>
     </nav>
 
-
+    <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
         <h1 class="text-8xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">
             Minemen PvP Clan
         </h1>
     </div>
 
-
+    <!-- Odkazy na sociální sítě -->
     <div class="social-links">
         <a href="home.html" target="_blank" class="social-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="social-icon youtube-icon">
@@ -140,22 +134,21 @@
         </a>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.body.classList.add("loaded");
+    <style>
+        
+        body {
+opacity: 0;
+transition: opacity 1s ease-in-out;
+}
 
-
-            const currentPage = window.location.pathname.split("/").pop();
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            navLinks.forEach(link => {
-
-                if (link.href.includes(currentPage)) {
-                    link.classList.add('text-pink-500');
-                }
-            });
-        });
-    </script>
-
+body.loaded {
+opacity: 1;
+}
+</style>
 </body>
-</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.classList.add("loaded");
+    });
+</script>
+
