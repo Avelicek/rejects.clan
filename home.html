@@ -47,7 +47,7 @@
             z-index: 10;
         }
 
-        /* Sociální odkazy */
+
         .social-links {
             position: fixed;
             bottom: 20px;
@@ -94,7 +94,7 @@
             opacity: 0.7;
         }
 
-        /* Efekt pro zpoždění zobrazení stránky */
+
         body {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -121,14 +121,14 @@
         </div>
     </nav>
 
-    <!-- Hlavní text -->
+
     <div class="text-center p-10" style="padding-top: 50px;">
         <h1 class="text-8xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">
             Minemen PvP Clan
         </h1>
     </div>
 
-    <!-- Odkazy na sociální sítě -->
+
     <div class="social-links">
         <a href="home.html" target="_blank" class="social-link">
             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="social-icon youtube-icon">
@@ -144,14 +144,14 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
 
-            // Získání aktuální stránky
-            const currentPage = window.location.pathname.split("/").pop(); // Získání názvu souboru z URL
+
+            const currentPage = window.location.pathname.split("/").pop();
             const navLinks = document.querySelectorAll('.nav-link');
 
             navLinks.forEach(link => {
-                // Pokud název souboru v URL odpovídá href odkazu, přidej růžovou barvu
+
                 if (link.href.includes(currentPage)) {
-                    link.classList.add('text-pink-500');  // Přidání růžové barvy pro aktivní stránku
+                    link.classList.add('text-pink-500');
                 }
             });
         });
