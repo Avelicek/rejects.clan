@@ -9,7 +9,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        
         body {
             font-family: 'Poppins', sans-serif;
             background-image: url('https://i.imgur.com/ZCHPthN.png');
@@ -20,8 +19,6 @@
             padding: 0;
             background-color: #2c2c2c;
         }
-
-
 
         .nav-link {
             font-size: 0.875rem;
@@ -96,11 +93,20 @@
         .social-link:hover {
             opacity: 0.7;
         }
+
+        /* Efekt pro zpoždění zobrazení stránky */
+        body {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="text-white">
 
-    <!-- Navigace -->
     <nav class="bg-[#060608] p-4 flex items-center">
         <div class="flex items-center space-x-4">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
@@ -108,10 +114,10 @@
         </div>
 
         <div class="ml-20 flex space-x-4 text-lg">
-            <a href="home.html" class="nav-link font-bold">HOME</a>
-            <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
-            <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
-            <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
+            <a href="home.html" class="nav-link font-bold" id="home-link">HOME</a>
+            <a href="clan-members.html" class="nav-link font-bold" id="clan-members-link">CLAN MEMBERS</a>
+            <a href="informations.html" class="nav-link font-bold" id="informations-link">INFORMATIONS</a>
+            <a href="applications.html" class="nav-link font-bold" id="applications-link">APPLICATIONS</a>
         </div>
     </nav>
 
@@ -134,21 +140,22 @@
         </a>
     </div>
 
-    <style>
-        
-        body {
-opacity: 0;
-transition: opacity 1s ease-in-out;
-}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("loaded");
 
-body.loaded {
-opacity: 1;
-}
-</style>
+            // Získání aktuální stránky
+            const currentPage = window.location.pathname.split("/").pop(); // Získání názvu souboru z URL
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                // Pokud název souboru v URL odpovídá href odkazu, přidej růžovou barvu
+                if (link.href.includes(currentPage)) {
+                    link.classList.add('text-pink-500');  // Přidání růžové barvy pro aktivní stránku
+                }
+            });
+        });
+    </script>
+
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.body.classList.add("loaded");
-    });
-</script>
-
+</html>
