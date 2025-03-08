@@ -23,7 +23,6 @@
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
-
         .nav-link:hover {
             color: #e92fd0;
             transform: translateX(5px);
@@ -65,6 +64,37 @@
             align-items: center;
         }
 
+        /* Sekce pro texty a informace */
+        .info-section {
+            padding: 40px;
+            background-color: #333333;
+        }
+
+        .info-header {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e92fd0;
+            margin-bottom: 20px;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            color: #6f6f70;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .info-text h2 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #e92fd0;
+        }
+
+        .info-text p {
+            margin-bottom: 10px;
+        }
+
         /* Flexbox pro členy */
         .members-container {
             display: flex;
@@ -74,13 +104,11 @@
             background-color: #2c2c2c;
         }
 
-
         .member-row {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
 
         .row-title {
             font-size: 1.5rem;
@@ -124,7 +152,6 @@
 
     <!-- Navbar -->
     <nav class="bg-[#060608] p-4 flex items-center">
-
         <div class="flex items-center space-x-4">
             <!-- Logo a text -->
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
@@ -145,10 +172,29 @@
         <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">INFORMATIONS</h1>
     </div>
 
+    <!-- Sekce pro informace -->
+    <div class="info-section">
+        <div class="info-header">
+            <h1>Informace pro členy</h1>
+        </div>
+        <div class="info-text">
+            <p>V této sekci najdete všechny důležité informace pro členy našeho klanu. Zde jsou podrobnosti o pravidlech, aktivitách a novinkách. Pro každou kategorii přidáme odpovídající text, který může být dlouhý podle potřeby. Pokud máte jakékoliv dotazy, neváhejte nás kontaktovat.</p>
+            
+            <h2>Pravidla chování</h2>
+            <p>Veškeré chování musí být v souladu s našimi pravidly. Následujte etické normy a buďte vždy nápomocní ostatním členům klanu.</p>
+
+            <h2>Aktivity klanu</h2>
+            <p>Každý měsíc se konají různé soutěže a akce. Doporučujeme se účastnit a získávat odměny.</p>
+
+            <h2>Novinky</h2>
+            <p>Pravidelně aktualizujeme novinky. Sledujte naši stránku pro nejnovější informace.</p>
+        </div>
+    </div>
+
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("loaded");
     });
 </script>
-
+</html>
