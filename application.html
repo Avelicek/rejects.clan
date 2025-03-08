@@ -18,6 +18,11 @@
             margin: 0;
             padding: 0;
             background-color: #2c2c2c;
+            min-height: 100vh; /* zajistí, že stránka bude mít minimální výšku */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Nastavení pro začátek */
+            padding-bottom: 50px; /* Přidání prostoru pro posouvání */
         }
 
         /* Styly pro odkazy v navigaci */
@@ -33,10 +38,14 @@
         }
 
         .container {
-            padding: 20px;
+            padding: 30px;
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             margin-top: 40px;
+            max-width: 700px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .form-title {
@@ -115,7 +124,7 @@
     </nav>
 
     <!-- Formulář pro Ticket a Přihlášení do Členství -->
-    <div class="container max-w-3xl mx-auto mt-10">
+    <div class="container">
         <h2 class="form-title">Application to join the LovelyDominance club</h2>
 
         <!-- Formulář pro Ticket -->
