@@ -13,7 +13,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* Nastavíme šedé pozadí pro celou stránku */
+            background-color: #f4f4f4; /* Šedé pozadí pro celou stránku */
         }
 
         /* Styly pro odkazy v navigaci */
@@ -64,17 +64,39 @@
             align-items: center;
         }
 
-        /* Karty členů bez speciálního pozadí */
-        .member-card {
+        /* Flexbox pro členy */
+        .members-container {
+            display: flex;
+            flex-wrap: wrap; /* Umožní členům být vedle sebe i pod sebou */
+            justify-content: center;
+            gap: 2rem;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            background-color: white; /* Pro členy necháme bílé pozadí */
         }
 
-        .member-card:hover {
-            transform: translateY(-10px); /* Efekt pro zvýraznění při najetí myší */
+        /* Jednoduché zobrazení pro každého člena */
+        .member {
+            text-align: center;
+            background-color: white; /* Bílé pozadí pro každého člena */
+            padding: 20px;
+            border-radius: 8px;
+            width: 200px; /* Nastavíme šířku každého člena */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .member img {
+            border-radius: 50%; /* Kulatý obrázek */
+            margin-bottom: 10px;
+        }
+
+        .member h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .member p {
+            font-size: 0.9rem;
+            color: #6f6f70;
         }
     </style>
 </head>
@@ -102,27 +124,37 @@
         <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">CLAN MEMBERS</h1>
     </div>
 
-    <!-- Sekce s členy (bez jakéhokoli speciálního pozadí pro členy) -->
-    <div class="mt-8">
-        <div class="grid grid-cols-3 gap-6 px-8">
-            <!-- Člen 1 -->
-            <div class="member-card">
-                <img src="https://via.placeholder.com/150" alt="Member 1" class="rounded-full mx-auto mb-4">
-                <h3 class="text-xl font-semibold">Member 1</h3>
-                <p class="text-gray-600">Role: PvP Specialist</p>
-            </div>
-            <!-- Člen 2 -->
-            <div class="member-card">
-                <img src="https://via.placeholder.com/150" alt="Member 2" class="rounded-full mx-auto mb-4">
-                <h3 class="text-xl font-semibold">Member 2</h3>
-                <p class="text-gray-600">Role: Strategist</p>
-            </div>
-            <!-- Člen 3 -->
-            <div class="member-card">
-                <img src="https://via.placeholder.com/150" alt="Member 3" class="rounded-full mx-auto mb-4">
-                <h3 class="text-xl font-semibold">Member 3</h3>
-                <p class="text-gray-600">Role: Tank</p>
-            </div>
+    <!-- Sekce s členy -->
+    <div class="members-container">
+        <!-- Člen 1 -->
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="Member 1" class="w-24 h-24 mx-auto">
+            <h3>Member 1</h3>
+            <p>Role: PvP Specialist</p>
+        </div>
+        <!-- Člen 2 -->
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="Member 2" class="w-24 h-24 mx-auto">
+            <h3>Member 2</h3>
+            <p>Role: Strategist</p>
+        </div>
+        <!-- Člen 3 -->
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="Member 3" class="w-24 h-24 mx-auto">
+            <h3>Member 3</h3>
+            <p>Role: Tank</p>
+        </div>
+        <!-- Člen 4 -->
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="Member 4" class="w-24 h-24 mx-auto">
+            <h3>Member 4</h3>
+            <p>Role: Healer</p>
+        </div>
+        <!-- Člen 5 -->
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="Member 5" class="w-24 h-24 mx-auto">
+            <h3>Member 5</h3>
+            <p>Role: Tank</p>
         </div>
     </div>
 
