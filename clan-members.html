@@ -73,8 +73,23 @@
             background-color: #2c2c2c; /* Nastavení šedého pozadí pro tuto sekci */
         }
 
-        /* Jednoduché zobrazení pro každého člena */
+        /* Jednoduché zobrazení pro každý řádek s názvem */
         .member-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Nadpis pro řádek */
+        .row-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e92fd0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .member-row-content {
             display: flex;
             justify-content: center;
             gap: 2rem;
@@ -130,49 +145,61 @@
 
     <!-- Sekce s členy -->
     <div class="members-container">
-        <!-- Řádek 1 -->
+        <!-- Řádek 1: Majitelé -->
         <div class="member-row">
-            <div class="member">
-                <img src="https://vzge.me/uploads/skin1.png" alt="Member 1">
-                <h3>Member 1</h3>
-                <p>Role: PvP Specialist</p>
+            <div class="row-title">Majitelé</div>
+            <div class="member-row-content">
+                <div class="member">
+                    <img src="https://vzge.me/uploads/skin1.png" alt="Member 1">
+                    <h3>Member 1</h3>
+                    <p>Role: Majitel</p>
+                </div>
             </div>
         </div>
         
-        <!-- Řádek 2 -->
+        <!-- Řádek 2: Admini -->
         <div class="member-row">
-            <div class="member">
-                <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
-                <h3>Member 2</h3>
-                <p>Role: Strategist</p>
-            </div>
-            <div class="member">
-                <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
-                <h3>Member 3</h3>
-                <p>Role: Tank</p>
+            <div class="row-title">Admini</div>
+            <div class="member-row-content">
+                <div class="member">
+                    <img src="https://vzge.me/uploads/skin2.png" alt="Member 2">
+                    <h3>Member 2</h3>
+                    <p>Role: Admin</p>
+                </div>
+                <div class="member">
+                    <img src="https://vzge.me/uploads/skin3.png" alt="Member 3">
+                    <h3>Member 3</h3>
+                    <p>Role: Admin</p>
+                </div>
             </div>
         </div>
         
-        <!-- Řádek 3 -->
+        <!-- Řádek 3: Moderátoři -->
         <div class="member-row">
-            <div class="member">
-                <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
-                <h3>Member 4</h3>
-                <p>Role: Healer</p>
-            </div>
-            <div class="member">
-                <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
-                <h3>Member 5</h3>
-                <p>Role: Tank</p>
+            <div class="row-title">Moderátoři</div>
+            <div class="member-row-content">
+                <div class="member">
+                    <img src="https://vzge.me/uploads/skin4.png" alt="Member 4">
+                    <h3>Member 4</h3>
+                    <p>Role: Moderator</p>
+                </div>
+                <div class="member">
+                    <img src="https://vzge.me/uploads/skin5.png" alt="Member 5">
+                    <h3>Member 5</h3>
+                    <p>Role: Moderator</p>
+                </div>
             </div>
         </div>
 
-        <!-- Řádek 4 -->
+        <!-- Řádek 4: Další -->
         <div class="member-row">
-            <div class="member">
-                <img src="https://vzge.me/uploads/skin6.png" alt="Member 6">
-                <h3>Member 6</h3>
-                <p>Role: Archer</p>
+            <div class="row-title">Další</div>
+            <div class="member-row-content">
+                <div class="member">
+                    <img src="https://vzge.me/uploads/skin6.png" alt="Member 6">
+                    <h3>Member 6</h3>
+                    <p>Role: Support</p>
+                </div>
             </div>
         </div>
     </div>
