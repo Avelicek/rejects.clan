@@ -45,8 +45,8 @@ $playerData = getPlayerData($uuid);
                 <div class="member">
                     <?php
                     // Zobrazení jména a skina hráče
-                    if (isset($playerData['name'])) {
-                        echo "<h3>" . $playerData['name'] . "</h3>";  // Jméno hráče
+                    if (isset($playerData['Avely_'])) {
+                        echo "<h3>" . $playerData['Avely_'] . "</h3>";  // Jméno hráče
                         echo "<img src='" . $playerData['skinUrl'] . "' alt='Player Skin'>";  // Skin hráče
                     } else {
                         // Pokud došlo k chybě, zobrazí se chybová zpráva
