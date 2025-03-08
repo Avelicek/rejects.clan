@@ -44,12 +44,18 @@
             z-index: 10;
         }
 
+        /* CSS proměnná pro nastavení barvy textu */
+        :root {
+            --social-text-color: #333; /* Výchozí barva textu */
+        }
+
         /* Styl pro sekci s odkazy na sociální média */
         .social-links {
             position: fixed; /* Fixní pozicování */
             bottom: 20px; /* Vzdálenost od spodního okraje */
             left: 20px; /* Vzdálenost od levého okraje */
             display: flex;
+            flex-direction: column; /* Odkazy budou zobrazeny vertikálně */
             gap: 20px; /* Mezera mezi odkazy */
         }
 
@@ -57,7 +63,7 @@
             display: flex;
             align-items: center; /* Uspořádání ikony a textu na stejné úrovni */
             text-decoration: none; /* Odstranění podtržení */
-            color: #333; /* Barva textu */
+            color: var(--social-text-color); /* Barva textu - používá proměnnou */
         }
 
         .social-icon {
