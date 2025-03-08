@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LD │ Applications</title>
+    <title>LD │ Create Ticket & Recruitment</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,39 +22,90 @@
 
         /* Styly pro odkazy v navigaci */
         .nav-link {
-            font-size: 0.875rem; /* Zmenšení velikosti textu */
-            color: #6f6f70; /* Světle šedá barva */
-            transition: color 0.3s ease, transform 0.3s ease; /* Hladký přechod */
+            font-size: 0.875rem;
+            color: #6f6f70;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        /* Efekt při najetí na odkaz (růžová barva) */
         .nav-link:hover {
-            color: #e92fd0; /* Růžová barva při najetí */
-            transform: translateX(5px); /* Posunutí doprava při najetí */
-            
+            color: #e92fd0;
+            transform: translateX(5px);
         }
 
-body {
-opacity: 0;
-transition: opacity 1s ease-in-out;
-}
+        .container {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin-top: 40px;
+        }
 
-body.loaded {
-opacity: 1;
-}
+        .form-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e92fd0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #e92fd0;
+        }
+
+        .form-button {
+            background-color: #e92fd0;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .form-button:hover {
+            background-color: #c81ac7;
+        }
+
+        .back-button {
+            background-color: #444;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        .back-button:hover {
+            background-color: #333;
+        }
     </style>
 </head>
 <body class="text-white">
 
     <!-- Navbar -->
     <nav class="bg-[#060608] p-4 flex items-center">
-        <!-- Logo a text -->
         <div class="flex items-center space-x-4">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
             <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
         </div>
 
-        <!-- Odkazy, které se posunou dál od loga -->
+        <!-- Navigační odkazy -->
         <div class="ml-20 flex space-x-4 text-lg">
             <a href="home.html" class="nav-link font-bold">HOME</a>
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
@@ -63,10 +114,52 @@ opacity: 1;
         </div>
     </nav>
 
+    <!-- Formulář pro Ticket a Recruitment -->
+    <div class="container max-w-3xl mx-auto mt-10">
+        <h2 class="form-title">Vytvořte Ticket nebo Pošlete Nábor</h2>
+
+        <!-- Ticket Formulář -->
+        <h3 class="text-xl font-semibold text-white mb-5">Vytvořte Ticket</h3>
+        <form>
+            <input type="text" class="form-input" placeholder="Jméno" required>
+            <input type="email" class="form-input" placeholder="Email" required>
+            <textarea class="form-input" placeholder="Popis problému nebo návrhu" rows="5" required></textarea>
+            <select class="form-input" required>
+                <option value="">Vyberte typ ticketu</option>
+                <option value="bug">Bug</option>
+                <option value="suggestion">Návrh</option>
+                <option value="question">Otázka</option>
+            </select>
+            <button type="submit" class="form-button">Odeslat Ticket</button>
+        </form>
+
+        <hr class="my-8 border-t-2 border-[#444]">
+
+        <!-- Recruitment Formulář -->
+        <h3 class="text-xl font-semibold text-white mb-5">Pošlete Nábor</h3>
+        <form>
+            <input type="text" class="form-input" placeholder="Jméno" required>
+            <input type="email" class="form-input" placeholder="Email" required>
+            <input type="text" class="form-input" placeholder="Discord Uživatel" required>
+            <input type="text" class="form-input" placeholder="Věk" required>
+            <select class="form-input" required>
+                <option value="">Vyberte pozici</option>
+                <option value="admin">Admin</option>
+                <option value="recruiter">Recruiter</option>
+                <option value="member">Member</option>
+            </select>
+            <textarea class="form-input" placeholder="Proč bychom měli vybrat vás?" rows="5" required></textarea>
+            <button type="submit" class="form-button">Odeslat Nábor</button>
+        </form>
+
+        <!-- Tlačítko pro návrat -->
+        <a href="applications.html" class="back-button">Zpět na stránku s aplikacemi</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("loaded");
+        });
+    </script>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.body.classList.add("loaded");
-    });
-</script>
 </html>
