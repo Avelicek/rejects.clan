@@ -68,10 +68,19 @@
         }
 
         .social-icon {
-            width: 30px; /* Velikost ikony - konstantní velikost pro obě ikony */
-            height: 30px; /* Výška ikony - konstantní velikost pro obě ikony */
-            object-fit: cover; /* Zachová poměr stran bez deformace */
             margin-right: 10px; /* Mezera mezi ikonou a textem */
+        }
+
+        .youtube-icon {
+            width: 40px; /* Velikost YouTube ikony (širší) */
+            height: 30px; /* Výška YouTube ikony */
+            object-fit: cover; /* Zachování proporcí */
+        }
+
+        .instagram-icon {
+            width: 30px; /* Velikost Instagram ikony (menší) */
+            height: 30px; /* Výška Instagram ikony */
+            object-fit: cover; /* Zachování proporcí */
         }
 
         .social-link span {
@@ -114,11 +123,11 @@
     <!-- Odkazy na sociální média - Umístěné v levém dolním rohu -->
     <div class="social-links">
         <a href="https://www.youtube.com" target="_blank" class="social-link">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/600px-YouTube_icon_%282013-2017%29.png" alt="YouTube" class="social-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/600px-YouTube_icon_%282013-2017%29.png" alt="YouTube" class="social-icon youtube-icon">
             <span>YouTube</span>
         </a>
         <a href="https://www.instagram.com" target="_blank" class="social-link">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon instagram-icon">
             <span>Instagram</span>
         </a>
     </div>
