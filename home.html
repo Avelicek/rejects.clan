@@ -32,6 +32,25 @@
             color: #e92fd0; /* Růžová barva při najetí */
             transform: translateX(5px); /* Posunutí doprava při najetí */
         }
+
+        /* Styly pro text na pozadí */
+        .background-text {
+            position: absolute;
+            top: 50%; /* Umístění textu ve středu stránky */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem; /* Velikost textu */
+            color: white; /* Barva textu */
+            font-weight: bold;
+            z-index: 1; /* Zajistí, že text bude nad pozadím */
+        }
+
+        /* Styly pro navbar */
+        nav {
+            position: relative;
+            z-index: 10; /* Zajistí, že navbar bude nad textem */
+        }
+
     </style>
 </head>
 <body class="text-white">
@@ -51,10 +70,12 @@
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
             <a href="applications.html" class="nav-link font-bold">APPLICATIONS</a>
         </div>
-        <div class="text-center p-10" style="padding-top: 100px;">
-            <h1 class="text-4xl font-bold text-pink-500">Clan Members</h1>
-        </div>        
     </nav>
+
+    <!-- Text nad pozadím -->
+    <div class="background-text">
+        Clan Members
+    </div>
 
 </body>
 </html>
