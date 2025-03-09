@@ -207,11 +207,11 @@ function login() {
 
         // Zpráva zmizí po 3 sekundách (nastavit si můžeš podle potřeby)
         setTimeout(() => {
-            successMessage.classList.add("fade-out"); // Přidání třídy pro animaci zmizení
+            successMessage.classList.add("hidden");
         }, 3000);
 
         // Uložení stavu přihlášení do localStorage
-        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("loggedIn", "true");
         localStorage.setItem("username", user.username);
         localStorage.setItem("isAdmin", user.isAdmin);
         localStorage.setItem("skin", user.skin);
@@ -222,7 +222,7 @@ function login() {
         document.getElementById("user-skin").src = user.skin;
         document.getElementById("user-name").innerText = user.username;
 
-        // Pokud je to administrátor, zobrazíme admin panel
+        // Pokud je uživatel administrátor, zobrazí se admin panel
         if (user.isAdmin) {
             document.getElementById("admin-panel").classList.remove("hidden");
 
