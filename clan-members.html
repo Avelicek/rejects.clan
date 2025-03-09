@@ -271,6 +271,29 @@ opacity: 1;
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("loaded");
+
+        // Pokud uživatel není přihlášený, přesměrujeme ho nebo skryjeme obsah
+        const loggedInUser = localStorage.getItem("loggedInUser");
+
+        if (!loggedInUser) {
+            document.getElementById("access-denied").classList.remove("hidden");
+        } else {
+            const user = JSON.parse(loggedInUser);
+
+            // Zobrazení uživatelského panelu
+            document.getElementById("user-panel").classList.remove("hidden");
+            document.getElementById("user-skin").src = user.skin;
+            document.getElementById("user-name").innerText = user.username;
+
+            // Skrytí tlačítka Login
+            document.getElementById("login-btn").classList.add("hidden");
+
+            // Pokud je to administrátor, zobrazíme administrátorský panel
+            if (user.isAdmin) {
+                document.getElementById("admin-panel").classList.remove("hidden");
+            }
+        }
     });
 </script>
+
 
