@@ -163,24 +163,20 @@
 
 </body>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Ujisti se, že login modal je skrytý po načtení stránky
-    document.getElementById("login-modal").classList.add("hidden");
-});
-
 function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const errorMessage = document.getElementById("error-message");
 
-    // Seznam uživatelů
+    // Mock uživatelů
     const users = [
         { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
         { username: "user1", password: "user1pass", skin: "https://example.com/user1-skin.png", isAdmin: false }
     ];
 
-    // Hledáme odpovídající uživatelský účet
+    // Najděte uživatele podle jména a hesla
     const user = users.find(account => account.username === username && account.password === password);
+    console.log(user); // Debug: Zobrazí vybraného uživatele
 
     if (user) {
         alert("Login successful!");
@@ -191,15 +187,18 @@ function login() {
         document.getElementById("user-skin").src = user.skin;
         document.getElementById("user-name").innerText = user.username;
 
-        // Zobrazení administrátorského panelu pro admina
+        // Pokud je to administrátor
         if (user.isAdmin) {
             document.getElementById("admin-panel").classList.remove("hidden");
-            // Načítáme tickety
+
+            // Mock tickety
             const tickets = [
                 { id: 1, title: "Ticket 1", description: "Some issue" },
                 { id: 2, title: "Ticket 2", description: "Another issue" }
             ];
+            console.log(tickets); // Debug: Zobrazí seznam ticketů
 
+            // Načítání ticketů do seznamu
             const ticketsList = document.getElementById("tickets-list");
             ticketsList.innerHTML = tickets.map(ticket => `
                 <div class="bg-gray-800 p-4 mb-4 rounded-lg">
@@ -213,22 +212,18 @@ function login() {
     }
 }
 
-function closeModal() {
-    document.getElementById("login-modal").classList.add("hidden");
-    document.getElementById("error-message").classList.add("hidden");
-}
-
 function logout() {
     // Skrýt uživatelský panel a admin panel při odhlášení
     document.getElementById("user-panel").classList.add("hidden");
     document.getElementById("admin-panel").classList.add("hidden");
 
-    // Resetovat pole pro skin a jméno
+    // Resetovat skin a jméno
     document.getElementById("user-skin").src = "";
     document.getElementById("user-name").innerText = "";
 
     // Zobrazit login modal
-    document.getElementById("login-modal").classList.remove("hidden");
+    const loginModal = document.getElementById("login-modal");
+    loginModal.classList.remove("hidden");
 }
 
 </script>
