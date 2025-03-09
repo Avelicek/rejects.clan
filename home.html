@@ -114,22 +114,11 @@
             <a href="application.html" class="nav-link font-bold">APPLICATION</a>
         </div>
 
-        <!-- Login Button -->
-        <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
-            Login
-        </button>        
-    </nav>
-
-    <!-- Login Modal -->
-<div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
-        <h2 class="text-2xl font-bold mb-4">Login</h2>
-        <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-2 rounded-lg bg-gray-800 text-white">
-        <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
-        <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
-        <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
-    </div>
-</div>
+        <div class="ml-auto">
+            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+                Login
+            </button>
+        </div>        
 
     <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
@@ -163,28 +152,7 @@ opacity: 1;
 </style>
 </body>
 <script>
-    const loginBtn = document.getElementById("login-btn");
-    const modal = document.getElementById("login-modal");
-
-    loginBtn.addEventListener("click", () => {
-        modal.classList.remove("hidden");
-    });
-
-    function closeModal() {
-        modal.classList.add("hidden");
-    }
-
-    function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        if (username === "admin" && password === "admin") {
-            alert("Login successful!");
-            closeModal();
-        } else {
-            alert("Invalid credentials!");
-        }
-    }
+    
     document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("loaded");
     });
