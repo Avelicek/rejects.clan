@@ -163,16 +163,27 @@
     }
 
     function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const errorMessage = document.getElementById("error-message");
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorMessage = document.getElementById("error-message");
 
-        if (username === "admin" && password === "admin") {
-            alert("Login successful!");
-            closeModal();
-        } else {
-            errorMessage.classList.remove("hidden");
-        }
+    // Seznam administrátorských účtů
+    const adminAccounts = [
+        { username: "admin1", password: "admin1pass" },
+        { username: "admin2", password: "admin2pass" },
+        { username: "admin3", password: "admin3pass" },
+    ];
+
+    // Hledání odpovídajícího uživatelského jména a hesla
+    const validAccount = adminAccounts.find(account => account.username === username && account.password === password);
+
+    if (validAccount) {
+        alert("Login successful!");
+        closeModal();
+    } else {
+        errorMessage.classList.remove("hidden");
     }
+}
+
 </script>
 
