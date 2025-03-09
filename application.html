@@ -18,14 +18,13 @@
             margin: 0;
             padding: 0;
             background-color: #2c2c2c;
-            min-height: 100vh; /* zajistí, že stránka bude mít minimální výšku */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Nastavení pro začátek */
-            padding-bottom: 50px; /* Přidání prostoru pro posouvání */
+            justify-content: flex-start;
+            padding-bottom: 50px;
         }
 
-        /* Styly pro odkazy v navigaci */
         .nav-link {
             font-size: 0.875rem;
             color: #6f6f70;
@@ -114,7 +113,6 @@
             <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
         </div>
 
-        <!-- Navigační odkazy -->
         <div class="ml-20 flex space-x-4 text-lg">
             <a href="home.html" class="nav-link font-bold">HOME</a>
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
@@ -129,14 +127,14 @@
         <h2 class="form-title">Application to join the LovelyDominance club</h2>
 
         <!-- Formulář pro Ticket -->
-        <form>
-            <input type="text" class="form-input" placeholder="What is your Minecraft nickname?" required>
-            <input type="email" class="form-input" placeholder="What is your Discord nickname?" required>
-            <input type="text" class="form-input" placeholder="What is Your main gamemode/gamemodes?" required>
-            <input type="text" class="form-input" placeholder="What is your age?" required>
-            <input type="text" class="form-input" placeholder="How active are you on minemen? How often do you play there?" required>
-            <textarea class="form-input" placeholder="What can you bring to LovelyDominance?" rows="5" required></textarea>
-            <select class="form-input" required>
+        <form id="application-form">
+            <input type="text" id="minecraft-nickname" class="form-input" placeholder="What is your Minecraft nickname?" required>
+            <input type="email" id="discord-nickname" class="form-input" placeholder="What is your Discord nickname?" required>
+            <input type="text" id="main-gamemode" class="form-input" placeholder="What is Your main gamemode/gamemodes?" required>
+            <input type="text" id="age" class="form-input" placeholder="What is your age?" required>
+            <input type="text" id="activity" class="form-input" placeholder="How active are you on minemen? How often do you play there?" required>
+            <textarea id="contribution" class="form-input" placeholder="What can you bring to LovelyDominance?" rows="5" required></textarea>
+            <select id="reason" class="form-input" required>
                 <option value="">Why do you want to join LovelyDominance?</option>
                 <option value="competitive">I want to participate in competitive activities</option>
                 <option value="community">I want to be part of a friendly community</option>
@@ -150,32 +148,47 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.body.classList.add("loaded");
-    
-            // Pokud uživatel není přihlášený, přesměrujeme ho nebo skryjeme obsah
-            const loggedInUser = localStorage.getItem("loggedInUser");
-    
-            if (!loggedInUser) {
-                document.getElementById("access-denied").classList.remove("hidden");
-            } else {
-                const user = JSON.parse(loggedInUser);
-    
-                // Zobrazení uživatelského panelu
-                document.getElementById("user-panel").classList.remove("hidden");
-                document.getElementById("user-skin").src = user.skin;
-                document.getElementById("user-name").innerText = user.username;
-    
-                // Skrytí tlačítka Login
-                document.getElementById("login-btn").classList.add("hidden");
-    
-                // Pokud je to administrátor, zobrazíme administrátorský panel
-                if (user.isAdmin) {
-                    document.getElementById("admin-panel").classList.remove("hidden");
-                }
-            }
+        // Event listener pro odeslání formuláře
+        document.getElementById("application-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Zabránění standardnímu odeslání formuláře
+
+            // Získání hodnot z formuláře
+            const minecraftNickname = document.getElementById("minecraft-nickname").value;
+            const discordNickname = document.getElementById("discord-nickname").value;
+            const mainGamemode = document.getElementById("main-gamemode").value;
+            const age = document.getElementById("age").value;
+            const activity = document.getElementById("activity").value;
+            const contribution = document.getElementById("contribution").value;
+            const reason = document.getElementById("reason").value;
+
+            // Vytvoření nového ticketu
+            const ticket = {
+                minecraftNickname,
+                discordNickname,
+                mainGamemode,
+                age,
+                activity,
+                contribution,
+                reason,
+                status: "pending" // Status ticketu
+            };
+
+            // Načítání existujících ticketů z localStorage
+            let tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+
+            // Přidání nového ticketu do seznamu
+            tickets.push(ticket);
+
+            // Uložení ticketů zpět do localStorage
+            localStorage.setItem("tickets", JSON.stringify(tickets));
+
+            // Informace pro uživatele o úspěšném odeslání
+            alert("Your application has been submitted successfully!");
+
+            // Volitelně můžeme stránku přesměrovat na seznam ticketů
+            window.location.href = "tickets.html";
         });
     </script>
-    
+
 </body>
 </html>
