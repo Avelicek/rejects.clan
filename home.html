@@ -148,4 +148,27 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("loaded");
     });
+
+    const loginBtn = document.getElementById("login-btn");
+    const modal = document.getElementById("login-modal");
+
+    loginBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+    });
+
+    function closeModal() {
+        modal.classList.add("hidden");
+    }
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === "admin" && password === "admin") {
+            alert("Login successful!");
+            closeModal();
+        } else {
+            alert("Invalid credentials!");
+        }
+    }
 </script>
