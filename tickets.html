@@ -114,6 +114,26 @@
             font-size: 1.2rem;
             font-weight: bold;
         }
+
+        /* Nový styl pro pozici Login, jméno a odhlásit se */
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-items a {
+            margin-right: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .user-info img {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body class="text-white">
@@ -132,11 +152,23 @@
             <a href="application.html" class="nav-link font-bold">APPLICATION</a>
         </div>
 
-        <!-- Login Button -->
-        <div class="ml-auto mr-6">
-            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
-                Login
-            </button>
+        <!-- Navigační položky pro Login, jméno a odhlášení -->
+        <div class="user-info">
+            <!-- Login Button -->
+            <div class="ml-auto mr-6" id="login-container">
+                <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+                    Login
+                </button>
+            </div>
+
+            <!-- Uživatelský panel -->
+            <div id="user-panel" class="hidden flex items-center space-x-4 ml-auto mr-6">
+                <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
+                <span id="user-name" class="text-white font-bold"></span>
+                <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+                    Odhlásit se
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -161,56 +193,36 @@
         </button>
     </div>
 
-    <!-- Administrátorský panel pro tickety -->
-    <div id="admin-panel" class="admin-panel hidden">
-        <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
-        <div id="tickets-list" class="text-white">
-            <!-- Tickety se načtou zde -->
-        </div>
-    </div>
-
-    <!-- Červená tabulka pro přístup -->
-    <div id="access-denied" class="access-denied hidden">
-        YOU DON'T HAVE ACCESS!
-    </div>
-
-    <!-- Hlavní text -->
-    <div class="text-center p-10" style="padding-top: 50px;">
-        <h1 class="text-8xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">
-            Minemen PvP Clan
-        </h1>
-    </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
-    
+
             // Pokud uživatel není přihlášený a chce přístup k ticketům
             const loggedInUser = localStorage.getItem("loggedInUser");
-    
+
             if (!loggedInUser) {
                 document.getElementById("access-denied").classList.remove("hidden");
             } else {
                 const user = JSON.parse(loggedInUser);
-    
+
                 // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-    
+
                 // Skrytí tlačítka Login
                 document.getElementById("login-btn").classList.add("hidden");
-    
+
                 // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
-    
+
                     // Načítání ticketů (mock data)
                     const tickets = [
                         { id: 1, title: "Ticket 1", description: "Some issue" },
                         { id: 2, title: "Ticket 2", description: "Another issue" }
                     ];
-    
+
                     const ticketsList = document.getElementById("tickets-list");
                     ticketsList.innerHTML = tickets.map(ticket => `
                         <div class="admin-ticket">
@@ -221,57 +233,57 @@
                 }
             }
         });
-    
+
         const loginBtn = document.getElementById("login-btn");
         const modal = document.getElementById("login-modal");
-    
+
         loginBtn.addEventListener("click", () => {
             modal.classList.remove("hidden");
         });
-    
+
         function closeModal() {
             modal.classList.add("hidden");
             document.getElementById("error-message").classList.add("hidden");
         }
-    
+
         function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
-    
+
             // Mock uživatelů (admin a běžný uživatel)
             const users = [
                 { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
             ];
-    
+
             // Najděte uživatele podle jména a hesla
             const user = users.find(account => account.username === username && account.password === password);
-    
+
             if (user) {
                 alert("Login successful!");
                 closeModal();
-    
+
                 // Uložení přihlášeného uživatele
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-    
+
                 // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-    
+
                 // Skrytí tlačítka Login
                 document.getElementById("login-btn").classList.add("hidden");
-    
+
                 // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
-    
+
                     // Načítání ticketů (mock data)
                     const tickets = [
                         { id: 1, title: "Ticket 1", description: "Some issue" },
                         { id: 2, title: "Ticket 2", description: "Another issue" }
                     ];
-    
+
                     const ticketsList = document.getElementById("tickets-list");
                     ticketsList.innerHTML = tickets.map(ticket => `
                         <div class="admin-ticket">
@@ -284,7 +296,7 @@
                 errorMessage.classList.remove("hidden");
             }
         }
-    
+
         function logout() {
             // Odstranění uživatele z localStorage a přesměrování na stránku
             localStorage.removeItem("loggedInUser");
