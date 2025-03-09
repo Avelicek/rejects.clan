@@ -60,7 +60,7 @@
         }
 
         .social-icon {
-            margin-right: 2px; /* Zvýšení vzdálenosti mezi ikonami a textem */
+            margin-right: 2px;
         }
 
         .youtube-icon {
@@ -117,9 +117,29 @@
             height: 20px;
         }
 
-        /* Styl pro text v hlášce */
         .success-message-text {
             font-size: 1rem;
+        }
+
+        /* Flex pro logo a tlačítko Login vedle sebe */
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Styly pro tlačítko Login */
+        .login-btn {
+            background-color: #f44336;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
@@ -127,7 +147,7 @@
 
     <!-- Navigace -->
     <nav class="bg-[#060608] p-4 flex items-center justify-between">
-        <div class="flex items-center space-x-4">
+        <div class="nav-items">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
             <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
         </div>
@@ -137,13 +157,13 @@
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
             <a href="application.html" class="nav-link font-bold">APPLICATION</a>
-            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a> <!-- TICKETS sekce -->
+            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a>
         </div>
 
         <!-- Login/Logout Panel -->
-        <div class="ml-auto mr-6" id="auth-panel">
+        <div class="ml-auto flex items-center space-x-4">
             <!-- Tlačítko pro přihlášení, bude nahrazeno profilem -->
-            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+            <button id="login-btn" class="login-btn">
                 Login
             </button>
             <!-- Uživatel (obrázek, jméno, odhlásit) -->
@@ -198,25 +218,19 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
     
-            // Zkontrolujeme přihlášení při načítání stránky
             const loggedInUser = localStorage.getItem("loggedInUser");
-            
             if (loggedInUser) {
                 const user = JSON.parse(loggedInUser);
-                // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
     
-                // Pokud je administrátor, zobrazí se admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
                 }
     
-                // Skrýt tlačítko Login
                 document.getElementById("login-btn").classList.add("hidden");
             } else {
-                // Zobrazí tlačítko Login, pokud uživatel není přihlášený
                 document.getElementById("login-btn").classList.remove("hidden");
                 document.getElementById("user-panel").classList.add("hidden");
                 document.getElementById("admin-panel").classList.add("hidden");
@@ -240,66 +254,49 @@
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
     
-            // Mock uživatelů (admin a běžný uživatel)
             const users = [
                 { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
                 { username: "user", password: "user", skin: "https://example.com/user-skin.png", isAdmin: false },
             ];
     
-            // Najděte uživatele podle jména a hesla
             const user = users.find(account => account.username === username && account.password === password);
     
             if (user) {
-                // Skrytí login modalu
                 closeModal();
-    
-                // Uložení přihlášeného uživatele
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-    
-                // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-    
-                // Skrýt tlačítko Login
                 document.getElementById("login-btn").classList.add("hidden");
     
-                // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
                 }
     
-                // Zobrazení success zprávy
                 const successMessage = document.getElementById("success-message");
                 successMessage.style.display = "flex";
                 setTimeout(() => {
-                    successMessage.style.opacity = 1; // Pomalé zobrazení
+                    successMessage.style.opacity = 1;
                 }, 100);
     
-                // Po 3 sekundách začneme pomalu skrývat zprávu
                 setTimeout(() => {
-                    successMessage.style.opacity = 0; // Pomalé zmizení
+                    successMessage.style.opacity = 0;
                 }, 3000);
     
                 setTimeout(() => {
-                    successMessage.style.display = "none"; // Skrytí po dokončení efektu
+                    successMessage.style.display = "none";
                 }, 3500);
             } else {
-                // Pokud není správné uživatelské jméno nebo heslo
                 errorMessage.classList.remove("hidden");
             }
         }
     
         function logout() {
-            // Odhlášení uživatele
             localStorage.removeItem("loggedInUser");
-    
-            // Skrýt panel uživatele a zobrazit tlačítko Login
             document.getElementById("user-panel").classList.add("hidden");
             document.getElementById("login-btn").classList.remove("hidden");
             document.getElementById("admin-panel").classList.add("hidden");
         }
     </script>
-    
 </body>
 </html>
