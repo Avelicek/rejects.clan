@@ -122,9 +122,25 @@
             <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
             <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
             <p id="error-message" class="text-red-500 hidden mt-2">Nesprávné heslo nebo uživatelské jméno</p>
-        </div>
+        </div><!-- Uživatelský panel (zobrazí se po přihlášení) -->
+<div id="user-panel" class="hidden flex items-center space-x-4 ml-auto mr-6">
+    <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
+    <span id="user-name" class="text-white font-bold"></span>
+    <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+        Odhlásit se
+    </button>
+</div>
+
+<!-- Sekce pro administrátory (zobrazí se pouze pro administrátory) -->
+<div id="admin-panel" class="hidden mt-8">
+    <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
+    <!-- Zde budou zobrazeny tickety -->
+    <div id="tickets-list" class="text-white">
+        <!-- Tickety budou načítány zde pomocí JavaScriptu -->
     </div>
-    
+</div>
+
+    </div>
 
     <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
@@ -146,79 +162,7 @@
     </div>
 
 </body>
-<script>
-function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const errorMessage = document.getElementById("error-message");
 
-    // Seznam administrátorských účtů
-    const adminAccounts = [
-        { username: "admin1", password: "admin1pass", skin: "https://example.com/skin1.png" },
-        { username: "admin2", password: "admin2pass", skin: "https://example.com/skin2.png" },
-        { username: "admin3", password: "admin3pass", skin: "https://example.com/skin3.png" },
-    ];
-
-    // Hledání odpovídajícího uživatelského jména a hesla
-    const validAccount = adminAccounts.find(account => account.username === username && account.password === password);
-
-    if (validAccount) {
-        // Ukázat uživatelský panel
-        document.getElementById("user-panel").classList.remove("hidden");
-        document.getElementById("login-btn").classList.add("hidden");
-
-        // Nastavit skin a jméno uživatele
-        document.getElementById("user-skin").src = validAccount.skin;
-        document.getElementById("user-name").textContent = validAccount.username;
-
-        // Zobrazit administrátorský panel, pokud je admin
-        if (validAccount.username.startsWith("admin")) {
-            document.getElementById("admin-panel").classList.remove("hidden");
-            loadTickets();  // Načíst tickety pro admina
-        }
-
-        closeModal();
-    } else {
-        errorMessage.classList.remove("hidden");
-    }
-}
-
-// Funkce pro odhlášení
-function logout() {
-    // Skrytí uživatelského panelu a opětovné zobrazení tlačítka login
-    document.getElementById("user-panel").classList.add("hidden");
-    document.getElementById("login-btn").classList.remove("hidden");
-
-    // Skrytí administrátorského panelu
-    document.getElementById("admin-panel").classList.add("hidden");
-
-    // Smazání informací o uživatelském panelu
-    document.getElementById("user-skin").src = "";
-    document.getElementById("user-name").textContent = "";
-}
-
-// Funkce pro načtení tiketů pro admina (předpokládáme, že tikety budou nějak uloženy)
-function loadTickets() {
-    const ticketsList = document.getElementById("tickets-list");
-    const tickets = [
-        { id: 1, subject: "Ticket 1", description: "Popis ticketu 1" },
-        { id: 2, subject: "Ticket 2", description: "Popis ticketu 2" },
-        { id: 3, subject: "Ticket 3", description: "Popis ticketu 3" }
-    ];
-
-    ticketsList.innerHTML = ""; // Vyčistit existující seznam tiketů
-
-    tickets.forEach(ticket => {
-        const ticketElement = document.createElement("div");
-        ticketElement.classList.add("mb-2");
-        ticketElement.innerHTML = `
-            <strong>ID: ${ticket.id}</strong><br>
-            <span class="font-bold">Předmět:</span> ${ticket.subject}<br>
-            <span class="font-bold">Popis:</span> ${ticket.description}
-        `;
-        ticketsList.appendChild(ticketElement);
-    });
-}
 
 </script>
 
