@@ -139,8 +139,6 @@
     <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
     <div id="tickets-list" class="text-white"></div>
 </div>
-</div>
-
 
     <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
@@ -196,7 +194,8 @@ function login() {
         alert("Login successful!");
         closeModal();
 
-        // Zobrazení uživatelského panelu
+        // Skrytí tlačítka Login a zobrazení panelu uživatele
+        document.getElementById("login-btn").classList.add("hidden");
         document.getElementById("user-panel").classList.remove("hidden");
         document.getElementById("user-skin").src = user.skin;
         document.getElementById("user-name").innerText = user.username;
@@ -224,4 +223,12 @@ function login() {
     }
 }
 
+function logout() {
+    // Skrytí panelu a zobrazení tlačítka Login
+    document.getElementById("user-panel").classList.add("hidden");
+    document.getElementById("login-btn").classList.remove("hidden");
+
+    // Skrytí admin panelu
+    document.getElementById("admin-panel").classList.add("hidden");
+}
 </script>
