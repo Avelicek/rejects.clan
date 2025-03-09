@@ -236,69 +236,46 @@
             } else {
                 document.getElementById("login-btn").classList.remove("hidden");
                 document.getElementById("user-panel").classList.add("hidden");
-                document.getElementById("admin-panel").classList.add("hidden");
             }
         });
-    
-        const loginBtn = document.getElementById("login-btn");
-        const modal = document.getElementById("login-modal");
-    
-        loginBtn.addEventListener("click", () => {
-            modal.classList.remove("hidden");
-        });
-    
-        function closeModal() {
-            modal.classList.add("hidden");
-            document.getElementById("error-message").classList.add("hidden");
-        }
     
         function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const errorMessage = document.getElementById("error-message");
     
-            const users = [
-                { username: "Avely_", password: "admin", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
-                { username: "Lonely_Thoughts", password: "admin", skin: "https://visage.surgeplay.com/bust/128/6f1da6f9-1934-4538-bfcb-812453f62945", isAdmin: true },
-            ];
-    
-            const user = users.find(account => account.username === username && account.password === password);
-    
-            if (user) {
-                closeModal();
+            if (username === "admin" && password === "admin123") {
+                const user = {
+                    username: username,
+                    skin: "https://minotar.net/helm/!" + username,
+                    isAdmin: true
+                };
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-                document.getElementById("user-panel").classList.remove("hidden");
-                document.getElementById("user-skin").src = user.skin;
-                document.getElementById("user-name").innerText = user.username;
-                document.getElementById("login-btn").classList.add("hidden");
-    
-                if (user.isAdmin) {
-                    document.getElementById("admin-panel").classList.remove("hidden");
-                }
-    
-                const successMessage = document.getElementById("success-message");
-                successMessage.style.display = "flex";
-                setTimeout(() => {
-                    successMessage.style.opacity = 1;
-                }, 100);
-    
-                setTimeout(() => {
-                    successMessage.style.opacity = 0;
-                }, 3000);
-    
-                setTimeout(() => {
-                    successMessage.style.display = "none";
-                }, 3500);
+                document.getElementById("login-modal").classList.add("hidden");
+                window.location.reload();
+                displaySuccessMessage();
             } else {
-                errorMessage.classList.remove("hidden");
+                document.getElementById("error-message").classList.remove("hidden");
             }
         }
     
+        function closeModal() {
+            document.getElementById("login-modal").classList.add("hidden");
+        }
+
         function logout() {
             localStorage.removeItem("loggedInUser");
-            document.getElementById("user-panel").classList.add("hidden");
-            document.getElementById("login-btn").classList.remove("hidden");
-            document.getElementById("admin-panel").classList.add("hidden");
+            window.location.reload();
+        }
+
+        function displaySuccessMessage() {
+            const successMessage = document.getElementById("success-message");
+            successMessage.style.display = "flex";
+            setTimeout(() => {
+                successMessage.style.opacity = 1;
+            }, 100);
+            setTimeout(() => {
+                successMessage.style.opacity = 0;
+            }, 3000);
         }
     </script>
 </body>
