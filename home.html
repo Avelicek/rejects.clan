@@ -143,7 +143,7 @@
         <!-- Login/Logout Panel -->
         <div class="ml-auto mr-6" id="auth-panel">
             <!-- Tlačítko pro přihlášení, bude nahrazeno profilem -->
-            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600" disabled>
                 Login
             </button>
             <!-- Uživatel (obrázek, jméno, odhlásit) -->
@@ -211,11 +211,14 @@
                     document.getElementById("admin-panel").classList.remove("hidden");
                 }
 
-                // Skrýt tlačítko Login
-                document.getElementById("login-btn").classList.add("hidden");
+                // Skrýt tlačítko Login a deaktivovat ho
+                const loginBtn = document.getElementById("login-btn");
+                loginBtn.classList.add("hidden");
+                loginBtn.disabled = true;
             } else {
                 // Zobrazí tlačítko Login, pokud uživatel není přihlášený
                 document.getElementById("login-btn").classList.remove("hidden");
+                document.getElementById("login-btn").disabled = false;
                 document.getElementById("user-panel").classList.add("hidden");
                 document.getElementById("admin-panel").classList.add("hidden");
             }
@@ -259,8 +262,10 @@
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
 
-                // Skrýt tlačítko Login
-                document.getElementById("login-btn").classList.add("hidden");
+                // Skrýt tlačítko Login a deaktivovat ho
+                const loginBtn = document.getElementById("login-btn");
+                loginBtn.classList.add("hidden");
+                loginBtn.disabled = true;
 
                 // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
@@ -296,6 +301,10 @@
             document.getElementById("user-panel").classList.add("hidden");
             document.getElementById("login-btn").classList.remove("hidden");
             document.getElementById("admin-panel").classList.add("hidden");
+
+            // Aktivování tlačítka Login
+            const loginBtn = document.getElementById("login-btn");
+            loginBtn.disabled = false;
         }
     </script>
 </body>
