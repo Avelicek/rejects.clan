@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LD │ Homepage</title>
+    <title>LD │ Tickets</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    
 
     <style>
         body {
@@ -93,60 +91,57 @@
 </head>
 <body class="text-white">
 
-<!-- Navigace -->
-<nav class="bg-[#060608] p-4 flex items-center justify-between">
-    <div class="flex items-center space-x-4">
-        <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
-        <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
-    </div>
+    <!-- Navigace -->
+    <nav class="bg-[#060608] p-4 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
+            <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
+        </div>
 
-    <div class="ml-20 flex space-x-4 text-lg">
-        <a href="home.html" class="nav-link font-bold">HOME</a>
-        <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
-        <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
-        <a href="application.html" class="nav-link font-bold">APPLICATION</a>
-    </div>
+        <div class="ml-20 flex space-x-4 text-lg">
+            <a href="home.html" class="nav-link font-bold">HOME</a>
+            <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
+            <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
+            <a href="application.html" class="nav-link font-bold">APPLICATION</a>
+            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a> <!-- TICKETS sekce -->
+        </div>
 
-    <!-- Login Button / User Panel -->
-    <div id="user-area" class="ml-auto mr-6">
-        <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
-            Login
-        </button>
-
-        <!-- Uživatelský panel (zobrazí se po přihlášení) -->
-        <div id="user-panel" class="hidden flex items-center space-x-4">
-            <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
-            <span id="user-name" class="text-white font-bold"></span>
-            <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
-                Odhlásit se
+        <!-- Login Button -->
+        <div class="ml-auto mr-6">
+            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+                Login
             </button>
         </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-2 rounded-lg bg-gray-800 text-white">
+            <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
+            <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
+            <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
+            <p id="error-message" class="text-red-500 hidden mt-2">Wrong username or password!</p>
+        </div>
     </div>
-<!-- Zpráva po úspěšném přihlášení -->
-<div id="login-success-message" class="hidden fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-3 rounded-lg shadow-lg z-15 flex items-center space-x-2">
-    <span id="check-icon">✔</span>
-    <span>Login successful!</span>
-</div>
 
-</nav>
-
-<!-- Login Modal -->
-<div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
-        <h2 class="text-2xl font-bold mb-4">Login</h2>
-        <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-2 rounded-lg bg-gray-800 text-white">
-        <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
-        <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
-        <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
-        <p id="error-message" class="text-red-500 hidden mt-2">Wrong username or password!</p>
+    <!-- Uživatelský panel (zobrazí se po přihlášení) -->
+    <div id="user-panel" class="hidden flex items-center space-x-4 ml-auto mr-6">
+        <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
+        <span id="user-name" class="text-white font-bold"></span>
+        <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+            Odhlásit se
+        </button>
     </div>
-</div>
 
-<!-- Administrátorský panel pro tickety -->
-<div id="admin-panel" class="hidden mt-8">
-    <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
-    <div id="tickets-list" class="text-white"></div>
-</div>
+    <!-- Administrátorský panel pro tickety -->
+    <div id="admin-panel" class="hidden mt-8">
+        <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
+        <div id="tickets-list" class="text-white">
+            <!-- Tickety se načtou zde -->
+        </div>
+    </div>
 
     <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
@@ -155,96 +150,117 @@
         </h1>
     </div>
 
-<!-- Odkazy na sociální sítě -->
-<div class="social-links">
-    <a href="home.html" target="_blank" class="social-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="social-icon youtube-icon">
-        <span>YouTube "(SOON)"</span>
-    </a>
-    <a href="home.html" target="_blank" class="social-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon instagram-icon">
-        <span>Instagram "(SOON)"</span>
-    </a>
-</div>
+    <!-- Odkazy na sociální sítě -->
+    <div class="social-links">
+        <a href="home.html" target="_blank" class="social-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="social-icon youtube-icon">
+            <span>YouTube "(SOON)"</span>
+        </a>
+        <a href="home.html" target="_blank" class="social-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon instagram-icon">
+            <span>Instagram "(SOON)"</span>
+        </a>
+    </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.classList.add("loaded");
 
-</body>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.body.classList.add("loaded");
-});
+            // Zkontrolujeme přihlášení při načítání stránky
+            const loggedInUser = localStorage.getItem("loggedInUser");
+            if (loggedInUser) {
+                const user = JSON.parse(loggedInUser);
+                document.getElementById("user-panel").classList.remove("hidden");
+                document.getElementById("user-skin").src = user.skin;
+                document.getElementById("user-name").innerText = user.username;
 
-const loginBtn = document.getElementById("login-btn");
-const modal = document.getElementById("login-modal");
+                // Pokud je administrátor, zobrazí se admin panel
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
+                }
+            } else {
+                // Pokud není přihlášený, skrýt sekci tickets
+                document.getElementById("tickets-link").classList.add("hidden");
+            }
+        });
 
-loginBtn.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-});
+        const loginBtn = document.getElementById("login-btn");
+        const modal = document.getElementById("login-modal");
 
-function closeModal() {
-    modal.classList.add("hidden");
-    document.getElementById("error-message").classList.add("hidden");
-}
+        loginBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
 
-function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const errorMessage = document.getElementById("error-message");
+        function closeModal() {
+            modal.classList.add("hidden");
+            document.getElementById("error-message").classList.add("hidden");
+        }
 
-    // Mock uživatelů (admin a běžný uživatel)
-    const users = [
-        { username: "Avely", password: "admin", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
-    ];
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
 
-    // Najděte uživatele podle jména a hesla
-    const user = users.find(account => account.username === username && account.password === password);
-
-    if (user) {
-        // Skrytí modalu a zobrazení login zprávy
-        closeModal();
-
-        // Zobrazit zprávu o úspěšném přihlášení
-        const successMessage = document.getElementById("login-success-message");
-        successMessage.classList.remove("hidden");
-
-        // Zpráva zmizí po 3 sekundách (nastavit si můžeš podle potřeby)
-        setTimeout(() => {
-            successMessage.classList.add("hidden");
-        }, 3000);
-
-        // Uložení stavu přihlášení do localStorage
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("username", user.username);
-        localStorage.setItem("isAdmin", user.isAdmin);
-        localStorage.setItem("skin", user.skin);
-
-        // Skrytí tlačítka Login a zobrazení panelu uživatele
-        document.getElementById("login-btn").classList.add("hidden");
-        document.getElementById("user-panel").classList.remove("hidden");
-        document.getElementById("user-skin").src = user.skin;
-        document.getElementById("user-name").innerText = user.username;
-
-        // Pokud je uživatel administrátor, zobrazí se admin panel
-        if (user.isAdmin) {
-            document.getElementById("admin-panel").classList.remove("hidden");
-
-            // Načítání ticketů (mock data)
-            const tickets = [
-                { id: 1, title: "Ticket 1", description: "Some issue" },
-                { id: 2, title: "Ticket 2", description: "Another issue" }
+            // Mock uživatelů (admin a běžný uživatel)
+            const users = [
+                { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
             ];
 
-            const ticketsList = document.getElementById("tickets-list");
-            ticketsList.innerHTML = tickets.map(ticket => `
-                <div class="bg-gray-800 p-4 mb-4 rounded-lg">
-                    <h3 class="font-bold text-xl">${ticket.title}</h3>
-                    <p>${ticket.description}</p>
-                </div>
-            `).join('');
-        }
-    } else {
-        errorMessage.classList.remove("hidden");
-    }
-}
+            // Najděte uživatele podle jména a hesla
+            const user = users.find(account => account.username === username && account.password === password);
 
-</script>
+            if (user) {
+                alert("Login successful!");
+                closeModal();
+
+                // Uložení přihlášeného uživatele
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+                // Zobrazení uživatelského panelu
+                document.getElementById("user-panel").classList.remove("hidden");
+                document.getElementById("user-skin").src = user.skin;
+                document.getElementById("user-name").innerText = user.username;
+
+                // Pokud je to administrátor, zobrazíme admin panel
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+
+                    // Načítání ticketů (mock data)
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
+                }
+            } else {
+                errorMessage.classList.remove("hidden");
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.reload();
+        }
+    </script>
+
+</body>
+</html>
