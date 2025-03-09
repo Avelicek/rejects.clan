@@ -276,6 +276,12 @@
                 errorMessage.classList.remove("hidden");
             }
         }
+
+        function logout() {
+            // Odstranění uživatele z localStorage a přesměrování na stránku
+            localStorage.removeItem("loggedInUser");
+            window.location.reload();
+        }
     </script>
 
 </body>
