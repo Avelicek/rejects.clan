@@ -88,39 +88,7 @@
             opacity: 0.7;
         }
 
-        /* Modální okno pro ticket */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .modal-content {
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 1000px;
-            color: white;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            background-color: red;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
+        /* Nový styl pro hlášení o úspěšném přihlášení */
         .success-message {
             position: fixed;
             top: 20px;
@@ -148,7 +116,11 @@
             height: 20px;
         }
 
-        /* Hlášení pro nepřihlášené uživatele */
+        /* Styl pro text v hlášce */
+        .success-message-text {
+            font-size: 1rem;
+        }
+
         .access-denied-message {
             position: fixed;
             top: 50%;
@@ -165,6 +137,54 @@
             width: auto;
             max-width: 350px;
             text-align: center;
+        }
+
+        /* Změny pro zobrazení ticketů */
+        .ticket {
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .ticket-title {
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .ticket-details {
+            display: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .ticket.open .ticket-details {
+            display: block;
+        }
+
+        .ticket.open .ticket-title {
+            color: #e92fd0;
+        }
+
+        .ticket button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ticket button:hover {
+            background-color: #45a049;
+        }
+
+        .ticket .assigned {
+            color: #e92fd0;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -200,25 +220,6 @@
         </div>
     </nav>
 
-    <!-- Modální okno pro ticket -->
-    <div id="ticket-modal" class="modal">
-        <div class="modal-content">
-            <h3 id="ticket-nickname"></h3>
-            <p><strong>Discord:</strong> <span id="ticket-discord"></span></p>
-            <p><strong>Gamemodes:</strong> <span id="ticket-gamemodes"></span></p>
-            <p><strong>Age:</strong> <span id="ticket-age"></span></p>
-            <p><strong>Activity:</strong> <span id="ticket-activity"></span></p>
-            <p><strong>Contribution:</strong> <span id="ticket-contribution"></span></p>
-            <p><strong>Reason for Joining:</strong> <span id="ticket-reason"></span></p>
-            <div>
-                <input type="checkbox" id="resolve-checkbox"> <label for="resolve-checkbox">Řeší</label>
-                <br>
-                <input type="checkbox" id="solved-checkbox"> <label for="solved-checkbox">Vyřešený</label>
-            </div>
-            <button class="close-btn" onclick="closeTicketModal()">Close</button>
-        </div>
-    </div>
-
     <!-- Administrátorský panel pro tickety -->
     <div id="admin-panel" class="hidden mt-8">
         <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
@@ -242,6 +243,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
 
+            // Zkontrolujeme přihlášení při načítání stránky
             const loggedInUser = localStorage.getItem("loggedInUser");
             const accessDeniedMessage = document.getElementById("access-denied-message");
 
@@ -256,24 +258,26 @@
 
                     const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
                     const ticketsList = document.getElementById("tickets-list");
-                    ticketsList.innerHTML = tickets.map(ticket => `
-                        <div class="bg-gray-800 p-4 mb-4 rounded-lg ticket-item" data-ticket='${JSON.stringify(ticket)}'>
-                            <h3 class="font-bold text-xl">${ticket.nickname}</h3>
-                            <p><strong>Discord:</strong> ${ticket.discord}</p>
-                            <p><strong>Gamemodes:</strong> ${ticket.gamemodes}</p>
-                            <p><strong>Age:</strong> ${ticket.age}</p>
-                            <p><strong>Activity:</strong> ${ticket.activity}</p>
-                            <p><strong>Contribution:</strong> ${ticket.contribution}</p>
-                            <p><strong>Reason:</strong> ${ticket.reason}</p>
-                        </div>
-                    `).join('');
-
-                    document.querySelectorAll('.ticket-item').forEach(ticketElement => {
-                        ticketElement.addEventListener('click', function () {
-                            const ticket = JSON.parse(this.getAttribute('data-ticket'));
-                            openTicketModal(ticket);
-                        });
-                    });
+                    if (tickets.length === 0) {
+                        ticketsList.innerHTML = "<p class='text-center'>No tickets submitted yet.</p>";
+                    } else {
+                        ticketsList.innerHTML = tickets.map(ticket => `
+                            <div class="ticket ${ticket.isAssigned ? 'open' : ''}" data-ticket-id="${ticket.id}">
+                                <div class="ticket-title">Ticket - ${ticket.nickname}</div>
+                                <div class="ticket-details">
+                                    <p><strong>Discord:</strong> ${ticket.discord}</p>
+                                    <p><strong>Gamemodes:</strong> ${ticket.gamemodes}</p>
+                                    <p><strong>Age:</strong> ${ticket.age}</p>
+                                    <p><strong>Activity:</strong> ${ticket.activity}</p>
+                                    <p><strong>Contribution:</strong> ${ticket.contribution}</p>
+                                    <p><strong>Reason for Joining:</strong> ${ticket.reason}</p>
+                                    ${ticket.isAssigned ? `<p class="assigned">Řeší: ${ticket.assignedBy}</p>` : ''}
+                                    <button class="assign-btn" onclick="assignTicket(${ticket.id})">${ticket.isAssigned ? 'Ticket Převzatý' : 'Převzít Ticket'}</button>
+                                    <button class="mark-resolved-btn" onclick="markResolved(${ticket.id})">${ticket.isResolved ? 'Ticket je vyřešený' : 'Označit jako vyřešený'}</button>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
                 }
 
                 document.getElementById("login-btn").classList.add("hidden");
@@ -287,48 +291,36 @@
             }
         });
 
-        function openTicketModal(ticket) {
-            document.getElementById('ticket-nickname').innerText = ticket.nickname;
-            document.getElementById('ticket-discord').innerText = ticket.discord;
-            document.getElementById('ticket-gamemodes').innerText = ticket.gamemodes;
-            document.getElementById('ticket-age').innerText = ticket.age;
-            document.getElementById('ticket-activity').innerText = ticket.activity;
-            document.getElementById('ticket-contribution').innerText = ticket.contribution;
-            document.getElementById('ticket-reason').innerText = ticket.reason;
-
-            const resolveCheckbox = document.getElementById('resolve-checkbox');
-            const solvedCheckbox = document.getElementById('solved-checkbox');
-
-            resolveCheckbox.checked = ticket.isResolving || false;
-            solvedCheckbox.checked = ticket.isSolved || false;
-
-            // Uložíme změny při zaškrtnutí checkboxů
-            resolveCheckbox.addEventListener('change', () => {
-                ticket.isResolving = resolveCheckbox.checked;
-                updateTicket(ticket);
-            });
-
-            solvedCheckbox.addEventListener('change', () => {
-                ticket.isSolved = solvedCheckbox.checked;
-                updateTicket(ticket);
-            });
-
-            document.getElementById('ticket-modal').style.display = 'flex';
-        }
-
-        function closeTicketModal() {
-            document.getElementById('ticket-modal').style.display = 'none';
-        }
-
-        function updateTicket(ticket) {
+        function assignTicket(ticketId) {
+            const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
             const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
-            const ticketIndex = tickets.findIndex(t => t.nickname === ticket.nickname);
-            if (ticketIndex !== -1) {
-                tickets[ticketIndex] = ticket;
+
+            const ticket = tickets.find(ticket => ticket.id === ticketId);
+            if (ticket && !ticket.isAssigned) {
+                ticket.isAssigned = true;
+                ticket.assignedBy = loggedInUser.username;
                 localStorage.setItem("tickets", JSON.stringify(tickets));
+
+                location.reload(); // Reload to reflect changes
             }
         }
-    </script>
 
+        function markResolved(ticketId) {
+            const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+
+            const ticket = tickets.find(ticket => ticket.id === ticketId);
+            if (ticket) {
+                ticket.isResolved = true;
+                localStorage.setItem("tickets", JSON.stringify(tickets));
+
+                location.reload(); // Reload to reflect changes
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            location.reload();
+        }
+    </script>
 </body>
 </html>
