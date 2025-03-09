@@ -158,17 +158,20 @@
 
     function closeModal() {
         modal.classList.add("hidden");
+        document.getElementById("error-message").classList.add("hidden"); // Skryje chybovou zprávu při zavření
     }
 
     function login() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
 
         if (username === "admin" && password === "admin") {
             alert("Login successful!");
             closeModal();
         } else {
-            alert("Invalid credentials!");
+            errorMessage.classList.remove("hidden");
         }
     }
 </script>
+
