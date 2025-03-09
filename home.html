@@ -172,6 +172,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add("loaded");
 });
 
+const loginBtn = document.getElementById("login-btn");
+const modal = document.getElementById("login-modal");
+
+loginBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+});
+
+function closeModal() {
+    modal.classList.add("hidden");
+    document.getElementById("error-message").classList.add("hidden");
+}
+
 function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -192,11 +204,11 @@ function login() {
         // Zobrazit zprávu o úspěšném přihlášení
         const successMessage = document.getElementById("login-success-message");
         successMessage.classList.remove("hidden");
-
-        // Zpráva začne mizet po 3 sekundách (tato doba se může upravit)
+        
+        // Zpráva zmizí po 3 sekundách (nastavit si můžeš podle potřeby)
         setTimeout(() => {
             successMessage.classList.add("hidden");
-        }, 3000);  // Po 3 sekundách začne mizet
+        }, 3000);
 
         // Skrytí tlačítka Login a zobrazení panelu uživatele
         document.getElementById("login-btn").classList.add("hidden");
@@ -226,6 +238,5 @@ function login() {
         errorMessage.classList.remove("hidden");
     }
 }
-
 
 </script>
