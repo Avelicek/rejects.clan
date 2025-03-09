@@ -88,7 +88,6 @@
             opacity: 0.7;
         }
 
-        /* Nový styl pro hlášení o úspěšném přihlášení */
         .success-message {
             position: fixed;
             top: 20px;
@@ -116,10 +115,10 @@
             height: 20px;
         }
 
-        /* Styl pro text v hlášce */
         .success-message-text {
             font-size: 1rem;
         }
+
         .access-denied-message {
             position: fixed;
             top: 50%;
@@ -154,7 +153,7 @@
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
             <a href="application.html" class="nav-link font-bold">APPLICATION</a>
-            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a> <!-- TICKETS sekce -->
+            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a>
         </div>
 
         <!-- Login/Logout Panel -->
@@ -225,7 +224,7 @@
                     if (tickets.length === 0) {
                         ticketsList.innerHTML = "<p class='text-center'>No tickets submitted yet.</p>";
                     } else {
-                        ticketsList.innerHTML = tickets.map(ticket => `
+                        ticketsList.innerHTML = tickets.map(ticket => ` 
                             <div class="bg-gray-800 p-4 mb-4 rounded-lg">
                                 <h3 class="font-bold text-xl">Application from: ${ticket.nickname}</h3>
                                 <p><strong>Discord:</strong> ${ticket.discord}</p>
@@ -237,11 +236,13 @@
                             </div>
                         `).join('');
                     }
+                } else {
+                    // Pokud uživatel není administrátor, zobrazí se zpráva o přístupu zakázán
+                    document.getElementById("access-denied-message").style.display = 'block';
                 }
 
                 // Skrýt tlačítko Login
                 document.getElementById("login-btn").classList.add("hidden");
-                document.getElementById("access-denied-message").style.display = 'none';
             } else {
                 // Zobrazí tlačítko Login, pokud uživatel není přihlášený
                 document.getElementById("login-btn").classList.remove("hidden");
@@ -297,21 +298,8 @@
                 // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
-
-                    // Načítání ticketů (mock data)
-                    const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
-                    const ticketsList = document.getElementById("tickets-list");
-                    ticketsList.innerHTML = tickets.map(ticket => `
-                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
-                            <h3 class="font-bold text-xl">${ticket.nickname}</h3>
-                            <p><strong>Discord:</strong> ${ticket.discord}</p>
-                            <p><strong>Gamemodes:</strong> ${ticket.gamemodes}</p>
-                            <p><strong>Age:</strong> ${ticket.age}</p>
-                            <p><strong>Activity:</strong> ${ticket.activity}</p>
-                            <p><strong>Contribution:</strong> ${ticket.contribution}</p>
-                            <p><strong>Reason:</strong> ${ticket.reason}</p>
-                        </div>
-                    `).join('');
+                } else {
+                    document.getElementById("access-denied-message").style.display = 'block';
                 }
 
                 // Zobrazíme úspěšné přihlášení
