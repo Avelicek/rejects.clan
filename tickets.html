@@ -88,7 +88,39 @@
             opacity: 0.7;
         }
 
-        /* Nový styl pro hlášení o úspěšném přihlášení */
+        /* Modální okno pro ticket */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 1000px;
+            color: white;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .success-message {
             position: fixed;
             top: 20px;
@@ -116,11 +148,7 @@
             height: 20px;
         }
 
-        /* Styl pro text v hlášce */
-        .success-message-text {
-            font-size: 1rem;
-        }
-
+        /* Hlášení pro nepřihlášené uživatele */
         .access-denied-message {
             position: fixed;
             top: 50%;
@@ -172,15 +200,22 @@
         </div>
     </nav>
 
-    <!-- Login Modal -->
-    <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
-            <h2 class="text-2xl font-bold mb-4">Login</h2>
-            <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-2 rounded-lg bg-gray-800 text-white">
-            <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
-            <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
-            <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
-            <p id="error-message" class="text-red-500 hidden mt-2">Wrong username or password!</p>
+    <!-- Modální okno pro ticket -->
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="ticket-nickname"></h3>
+            <p><strong>Discord:</strong> <span id="ticket-discord"></span></p>
+            <p><strong>Gamemodes:</strong> <span id="ticket-gamemodes"></span></p>
+            <p><strong>Age:</strong> <span id="ticket-age"></span></p>
+            <p><strong>Activity:</strong> <span id="ticket-activity"></span></p>
+            <p><strong>Contribution:</strong> <span id="ticket-contribution"></span></p>
+            <p><strong>Reason for Joining:</strong> <span id="ticket-reason"></span></p>
+            <div>
+                <input type="checkbox" id="resolve-checkbox"> <label for="resolve-checkbox">Řeší</label>
+                <br>
+                <input type="checkbox" id="solved-checkbox"> <label for="solved-checkbox">Vyřešený</label>
+            </div>
+            <button class="close-btn" onclick="closeTicketModal()">Close</button>
         </div>
     </div>
 
@@ -207,7 +242,6 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
 
-            // Zkontrolujeme přihlášení při načítání stránky
             const loggedInUser = localStorage.getItem("loggedInUser");
             const accessDeniedMessage = document.getElementById("access-denied-message");
 
@@ -222,21 +256,24 @@
 
                     const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
                     const ticketsList = document.getElementById("tickets-list");
-                    if (tickets.length === 0) {
-                        ticketsList.innerHTML = "<p class='text-center'>No tickets submitted yet.</p>";
-                    } else {
-                        ticketsList.innerHTML = tickets.map(ticket => `
-                            <div class="bg-gray-800 p-4 mb-4 rounded-lg">
-                                <h3 class="font-bold text-xl">Application from: ${ticket.nickname}</h3>
-                                <p><strong>Discord:</strong> ${ticket.discord}</p>
-                                <p><strong>Gamemodes:</strong> ${ticket.gamemodes}</p>
-                                <p><strong>Age:</strong> ${ticket.age}</p>
-                                <p><strong>Activity:</strong> ${ticket.activity}</p>
-                                <p><strong>Contribution:</strong> ${ticket.contribution}</p>
-                                <p><strong>Reason for Joining:</strong> ${ticket.reason}</p>
-                            </div>
-                        `).join('');
-                    }
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="bg-gray-800 p-4 mb-4 rounded-lg ticket-item" data-ticket='${JSON.stringify(ticket)}'>
+                            <h3 class="font-bold text-xl">${ticket.nickname}</h3>
+                            <p><strong>Discord:</strong> ${ticket.discord}</p>
+                            <p><strong>Gamemodes:</strong> ${ticket.gamemodes}</p>
+                            <p><strong>Age:</strong> ${ticket.age}</p>
+                            <p><strong>Activity:</strong> ${ticket.activity}</p>
+                            <p><strong>Contribution:</strong> ${ticket.contribution}</p>
+                            <p><strong>Reason:</strong> ${ticket.reason}</p>
+                        </div>
+                    `).join('');
+
+                    document.querySelectorAll('.ticket-item').forEach(ticketElement => {
+                        ticketElement.addEventListener('click', function () {
+                            const ticket = JSON.parse(this.getAttribute('data-ticket'));
+                            openTicketModal(ticket);
+                        });
+                    });
                 }
 
                 document.getElementById("login-btn").classList.add("hidden");
@@ -250,73 +287,48 @@
             }
         });
 
-        const loginBtn = document.getElementById("login-btn");
-        const modal = document.getElementById("login-modal");
+        function openTicketModal(ticket) {
+            document.getElementById('ticket-nickname').innerText = ticket.nickname;
+            document.getElementById('ticket-discord').innerText = ticket.discord;
+            document.getElementById('ticket-gamemodes').innerText = ticket.gamemodes;
+            document.getElementById('ticket-age').innerText = ticket.age;
+            document.getElementById('ticket-activity').innerText = ticket.activity;
+            document.getElementById('ticket-contribution').innerText = ticket.contribution;
+            document.getElementById('ticket-reason').innerText = ticket.reason;
 
-        loginBtn.addEventListener("click", () => {
-            modal.classList.remove("hidden");
-        });
+            const resolveCheckbox = document.getElementById('resolve-checkbox');
+            const solvedCheckbox = document.getElementById('solved-checkbox');
 
-        function closeModal() {
-            modal.classList.add("hidden");
-            document.getElementById("error-message").classList.add("hidden");
+            resolveCheckbox.checked = ticket.isResolving || false;
+            solvedCheckbox.checked = ticket.isSolved || false;
+
+            // Uložíme změny při zaškrtnutí checkboxů
+            resolveCheckbox.addEventListener('change', () => {
+                ticket.isResolving = resolveCheckbox.checked;
+                updateTicket(ticket);
+            });
+
+            solvedCheckbox.addEventListener('change', () => {
+                ticket.isSolved = solvedCheckbox.checked;
+                updateTicket(ticket);
+            });
+
+            document.getElementById('ticket-modal').style.display = 'flex';
         }
 
-        function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const errorMessage = document.getElementById("error-message");
+        function closeTicketModal() {
+            document.getElementById('ticket-modal').style.display = 'none';
+        }
 
-            const users = [
-                { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
-                { username: "user", password: "user", skin: "https://example.com/user-skin.png", isAdmin: false },
-            ];
-
-            const user = users.find(account => account.username === username && account.password === password);
-
-            if (user) {
-                closeModal();
-
-                localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-                document.getElementById("user-panel").classList.remove("hidden");
-                document.getElementById("user-skin").src = user.skin;
-                document.getElementById("user-name").innerText = user.username;
-
-                document.getElementById("login-btn").classList.add("hidden");
-
-                if (user.isAdmin) {
-                    document.getElementById("admin-panel").classList.remove("hidden");
-
-                    const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
-                    const ticketsList = document.getElementById("tickets-list");
-                    ticketsList.innerHTML = tickets.map(ticket => `
-                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
-                            <h3 class="font-bold text-xl">${ticket.nickname}</h3>
-                            <p><strong>Discord:</strong> ${ticket.discord}</p>
-                            <p><strong>Gamemodes:</strong> ${ticket.gamemodes}</p>
-                            <p><strong>Age:</strong> ${ticket.age}</p>
-                            <p><strong>Activity:</strong> ${ticket.activity}</p>
-                            <p><strong>Contribution:</strong> ${ticket.contribution}</p>
-                            <p><strong>Reason:</strong> ${ticket.reason}</p>
-                        </div>
-                    `).join('');
-                }
-
-                const successMessage = document.getElementById("success-message");
-                successMessage.style.display = 'flex';
-                setTimeout(() => {
-                    successMessage.style.opacity = '0';
-                }, 3000);
-            } else {
-                errorMessage.classList.remove("hidden");
+        function updateTicket(ticket) {
+            const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+            const ticketIndex = tickets.findIndex(t => t.nickname === ticket.nickname);
+            if (ticketIndex !== -1) {
+                tickets[ticketIndex] = ticket;
+                localStorage.setItem("tickets", JSON.stringify(tickets));
             }
         }
-
-        function logout() {
-            localStorage.removeItem("loggedInUser");
-            location.reload();
-        }
     </script>
+
 </body>
 </html>
