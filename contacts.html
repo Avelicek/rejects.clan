@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/users.js" defer></script>
 
     <style>
         body {
@@ -89,6 +90,56 @@
         .social-link:hover {
             opacity: 0.7;
         }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .contact-container h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
+
+        .contact-textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+            height: 150px;
+        }
+
+        .contact-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #e92fd0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .contact-button:hover {
+            background-color: #f036b3;
+        }
     </style>
 </head>
 <body class="text-white">
@@ -104,7 +155,6 @@
             <a href="home.html" class="nav-link font-bold">HOME</a>
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
-            <a href="contacts.html" class="nav-link font-bold">CONTACTS</a>
         </div>
 
         <!-- Login/Logout Panel -->
@@ -122,51 +172,35 @@
         </div>
     </nav>
 
-    <!-- Hlavní část kontaktní stránky -->
-    <div class="text-center p-10" style="padding-top: 50px;">
-        <h1 class="text-6xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">
-            Kontaktujte nás
-        </h1>
-        <p class="text-xl mt-5 text-white">Máte nějaké dotazy nebo potřebujete pomoc? Nebojte se nás kontaktovat!</p>
-
-        <div class="mt-10">
-            <h2 class="text-3xl font-bold text-white">Sociální média</h2>
-            <div class="flex justify-center mt-5 gap-10">
-                <a href="https://www.youtube.com/YourClanChannel" class="social-link" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="youtube-icon">
-                    <span>YouTube</span>
-                </a>
-                <a href="https://www.instagram.com/lovely.dominance/?hl=en" class="social-link" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="instagram-icon">
-                    <span>Instagram</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Socia Links (YouTube & Instagram) -->
-    <div class="social-links">
-        <a href="https://www.youtube.com/YourClanChannel" class="social-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="youtube-icon">
-            <span>YouTube</span>
-        </a>
-        <a href="https://www.instagram.com/lovely.dominance/?hl=en" class="social-link" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="instagram-icon">
-            <span>Instagram</span>
-        </a>
+    <!-- Kontaktní formulář -->
+    <div class="contact-container">
+        <h2>Kontaktujte nás</h2>
+        <form id="contact-form">
+            <input type="text" id="name" class="contact-input" placeholder="Vaše jméno" required>
+            <input type="email" id="email" class="contact-input" placeholder="Váš email" required>
+            <textarea id="message" class="contact-textarea" placeholder="Zpráva" required></textarea>
+            <button type="submit" class="contact-button">Odeslat zprávu</button>
+        </form>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
 
+            // Pokud uživatel není přihlášený a chce přístup k ticketům
             const loggedInUser = localStorage.getItem("loggedInUser");
 
-            if (loggedInUser) {
+            if (!loggedInUser) {
+                document.getElementById("access-denied").classList.remove("hidden");
+            } else {
                 const user = JSON.parse(loggedInUser);
+
+                // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
+
+                // Skrytí tlačítka Login
                 document.getElementById("login-btn").classList.add("hidden");
             }
         });
@@ -188,21 +222,30 @@
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
 
+            // Mock uživatelů (admin a běžný uživatel)
             const users = [
-                { username: "Avely_", password: "mYZDL7POQrWfex3", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
+            { username: "Avely_", password: "mYZDL7POQrWfex3", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
                 { username: "Lonely_Thoughts", password: "HmY1CjKeFM3geZl", skin: "https://visage.surgeplay.com/bust/128/6f1da6f9-1934-4538-bfcb-812453f62945", isAdmin: true },
+                { username: "", password: "mYZDL7POQrWfex3", skin: "https://example.com/admin-skin.png", isAdmin: true },
+                { username: "", password: "mYZDL7POQrWfex3", skin: "https://example.com/admin-skin.png", isAdmin: true },
             ];
 
+            // Najděte uživatele podle jména a hesla
             const user = users.find(account => account.username === username && account.password === password);
 
             if (user) {
                 alert("Login successful!");
                 closeModal();
 
+                // Uložení přihlášeného uživatele
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+                // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
+
+                // Skrytí tlačítka Login
                 document.getElementById("login-btn").classList.add("hidden");
             } else {
                 errorMessage.classList.remove("hidden");
@@ -210,6 +253,7 @@
         }
 
         function logout() {
+            // Odstranění uživatele z localStorage a přesměrování na stránku
             localStorage.removeItem("loggedInUser");
             window.location.reload();
         }
