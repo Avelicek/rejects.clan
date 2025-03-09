@@ -26,128 +26,110 @@
             opacity: 1;
         }
 
-        .ticket-card {
-            background-color: #333;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+        .nav-link {
+            font-size: 0.875rem;
+            color: #6f6f70;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        .ticket-card:hover {
-            transform: scale(1.05);
-            background-color: #444;
+        .nav-link:hover {
+            color: #e92fd0;
+            transform: translateX(5px);
         }
 
-        .ticket-card h3 {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #f39c12;
+        nav {
+            position: relative;
+            z-index: 10;
         }
 
-        .ticket-card p {
-            font-size: 1rem;
-            color: #ccc;
-        }
-
-        /* Uživatelův panel */
-        .user-panel {
-            display: flex;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border-radius: 10px;
-            color: white;
-            margin-left: auto;
-            margin-top: 20px;
-        }
-
-        .user-panel img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-
-        .user-panel .name {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .logout-btn {
-            background-color: #e74c3c;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            color: white;
-            font-weight: bold;
-            margin-left: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background-color: #c0392b;
-        }
-
-        /* Styly pro Login modal */
-        .login-modal {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .social-links {
             position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            transition: all 0.3s ease;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .login-modal .modal-content {
-            background-color: #333;
-            padding: 30px;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-        }
-
-        .login-modal .input-field {
-            background-color: #444;
+        .social-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
             color: white;
-            padding: 12px;
-            border-radius: 5px;
-            width: 100%;
-            margin-bottom: 15px;
-            border: none;
-            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
-        .login-modal button {
-            background-color: #27ae60;
+        .social-icon {
+            margin-right: 10px;
+        }
+
+        .youtube-icon {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+        }
+
+        .instagram-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+        }
+
+        .social-link span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .social-link:hover span {
+            color: red;
+        }
+
+        .social-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Nový styl pro hlášení o úspěšném přihlášení */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
             color: white;
-            padding: 12px 20px;
-            font-size: 1rem;
+            padding: 15px;
             border-radius: 5px;
-            width: 100%;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        .login-modal button:hover {
-            background-color: #2ecc71;
-        }
-
-        .error-message {
-            color: #e74c3c;
-            font-size: 1rem;
-            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
             display: none;
+            opacity: 0;
+            transition: opacity 3s ease-out;
+            z-index: 999;
+            width: auto;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .success-message img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Styl pro text v hlášce */
+        .success-message-text {
+            font-size: 1rem;
+        }
+
     </style>
 </head>
 <body class="text-white">
 
+    <!-- Navigace -->
     <nav class="bg-[#060608] p-4 flex items-center justify-between">
         <div class="flex items-center space-x-4">
             <img src="https://i.imgur.com/SwkMFE2.png" alt="Logo" class="w-20 h-20 rounded-lg">
-            <span class="font-bold text-lg uppercase text-white">LOVELY DOMINANCE</span>
+            <span class="font-bold text-lg uppercase">LOVELY DOMINANCE</span>
         </div>
 
         <div class="ml-20 flex space-x-4 text-lg">
@@ -155,77 +137,100 @@
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
             <a href="application.html" class="nav-link font-bold">APPLICATION</a>
-            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a>
+            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a> <!-- TICKETS sekce -->
         </div>
 
-        <!-- Uživatelův panel -->
-        <div class="user-panel hidden" id="user-panel">
-            <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
-            <span id="user-name" class="name">Username</span>
-            <button id="logout-btn" class="logout-btn" onclick="logout()">Odhlásit se</button>
+        <!-- Login/Logout Panel -->
+        <div class="ml-auto mr-6" id="auth-panel">
+            <!-- Tlačítko pro přihlášení, bude nahrazeno profilem -->
+            <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+                Login
+            </button>
+            <!-- Uživatel (obrázek, jméno, odhlásit) -->
+            <div id="user-panel" class="hidden flex items-center space-x-4">
+                <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
+                <span id="user-name" class="text-white font-bold"></span>
+                <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
+                    Odhlásit se
+                </button>
+            </div>
         </div>
-
-        <!-- Tlačítko pro přihlášení -->
-        <button id="login-btn" class="bg-blue-500 text-white px-6 py-3 rounded-full">Login</button>
     </nav>
 
-    <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold text-center text-yellow-500 mb-10">Admin Tickets</h1>
-
-        <div id="tickets-list">
-            <!-- Ticket cards will be dynamically injected here -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-2 rounded-lg bg-gray-800 text-white">
+            <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
+            <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
+            <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
+            <p id="error-message" class="text-red-500 hidden mt-2">Wrong username or password!</p>
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div id="login-modal" class="login-modal hidden">
-        <div class="modal-content">
-            <h2 class="text-xl font-bold mb-4">Login</h2>
-            <input id="username" type="text" class="input-field" placeholder="Username">
-            <input id="password" type="password" class="input-field" placeholder="Password">
-            <button onclick="login()">Login</button>
-            <p id="error-message" class="error-message">Wrong username or password!</p>
+    <!-- Administrátorský panel pro tickety -->
+    <div id="admin-panel" class="hidden mt-8">
+        <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
+        <div id="tickets-list" class="text-white">
+            <!-- Tickety se načtou zde -->
         </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-message">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Check_icon.svg/1024px-Check_icon.svg.png" alt="✔">
+        <span class="success-message-text">Login successful!</span>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
 
-            // Přihlášený uživatel
+            // Zkontrolujeme přihlášení při načítání stránky
             const loggedInUser = localStorage.getItem("loggedInUser");
-
             if (loggedInUser) {
                 const user = JSON.parse(loggedInUser);
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-                document.getElementById("login-btn").classList.add("hidden");
 
+                // Pokud je administrátor, zobrazí se admin panel
                 if (user.isAdmin) {
-                    loadTickets();
+                    document.getElementById("admin-panel").classList.remove("hidden");
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
                 }
+
+                // Skrýt tlačítko Login
+                document.getElementById("login-btn").classList.add("hidden");
             } else {
-                document.getElementById("login-btn").addEventListener("click", () => {
-                    document.getElementById("login-modal").classList.remove("hidden");
-                });
+                // Zobrazí tlačítko Login, pokud uživatel není přihlášený
+                document.getElementById("login-btn").classList.remove("hidden");
+                document.getElementById("user-panel").classList.add("hidden");
+                document.getElementById("admin-panel").classList.add("hidden");
             }
         });
 
-        function loadTickets() {
-            // Mock ticket data
-            const tickets = [
-                { id: 1, title: "Issue with website", description: "The site is down for maintenance." },
-                { id: 2, title: "Bug in the app", description: "There is an error on the login page." }
-            ];
+        const loginBtn = document.getElementById("login-btn");
+        const modal = document.getElementById("login-modal");
 
-            const ticketsList = document.getElementById("tickets-list");
-            ticketsList.innerHTML = tickets.map(ticket => `
-                <div class="ticket-card">
-                    <h3>${ticket.title}</h3>
-                    <p>${ticket.description}</p>
-                </div>
-            `).join('');
+        loginBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
+
+        function closeModal() {
+            modal.classList.add("hidden");
+            document.getElementById("error-message").classList.add("hidden");
         }
 
         function login() {
@@ -233,34 +238,78 @@
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
 
-            // Mock users
+            // Mock uživatelů (admin a běžný uživatel)
             const users = [
-                { username: "admin", password: "admin123", skin: "https://example.com/skin.png", isAdmin: true }
+                { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
+                { username: "user", password: "user", skin: "https://example.com/user-skin.png", isAdmin: false },
             ];
 
+            // Najděte uživatele podle jména a hesla
             const user = users.find(account => account.username === username && account.password === password);
 
             if (user) {
+                // Skrytí login modalu
+                closeModal();
+
+                // Uložení přihlášeného uživatele
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-                document.getElementById("login-modal").classList.add("hidden");
+
+                // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
+
+                // Skrýt tlačítko Login
                 document.getElementById("login-btn").classList.add("hidden");
 
+                // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
-                    loadTickets();
+                    document.getElementById("admin-panel").classList.remove("hidden");
+
+                    // Načítání ticketů (mock data)
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
                 }
+
+                // Zobrazení success zprávy
+                const successMessage = document.getElementById("success-message");
+                successMessage.style.display = "flex";
+                setTimeout(() => {
+                    successMessage.style.opacity = 1; // Pomalé zobrazení
+                }, 100);
+
+                // Po 3 sekundách začneme pomalu skrývat zprávu
+                setTimeout(() => {
+                    successMessage.style.opacity = 0; // Pomalé zmizení
+                }, 3000);
+
+                setTimeout(() => {
+                    successMessage.style.display = "none"; // Skrytí po dokončení efektu
+                }, 3500);
             } else {
+                // Pokud není správné uživatelské jméno nebo heslo
                 errorMessage.classList.remove("hidden");
             }
         }
 
         function logout() {
+            // Odhlášení uživatele
             localStorage.removeItem("loggedInUser");
-            window.location.reload();
+
+            // Skrýt panel uživatele a zobrazit tlačítko Login
+            document.getElementById("user-panel").classList.add("hidden");
+            document.getElementById("login-btn").classList.remove("hidden");
+            document.getElementById("admin-panel").classList.add("hidden");
         }
     </script>
-
 </body>
 </html>
