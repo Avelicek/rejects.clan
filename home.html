@@ -120,6 +120,11 @@
             </button>
         </div>
     </div>
+    <!-- Zpráva po úspěšném přihlášení -->
+<div id="login-success-message" class="hidden fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-4 rounded-lg shadow-lg z-20">
+    <span>Login successful!</span>
+</div>
+
 </nav>
 
 <!-- Login Modal -->
@@ -192,8 +197,17 @@ function login() {
     const user = users.find(account => account.username === username && account.password === password);
 
     if (user) {
-        alert("Login successful!");
+        // Skrytí modalu a zobrazení login zprávy
         closeModal();
+
+        // Zobrazit zprávu o úspěšném přihlášení
+        const successMessage = document.getElementById("login-success-message");
+        successMessage.classList.remove("hidden");
+        
+        // Zpráva zmizí po 3 sekundách (nastavit si můžeš podle potřeby)
+        setTimeout(() => {
+            successMessage.classList.add("hidden");
+        }, 3000);
 
         // Skrytí tlačítka Login a zobrazení panelu uživatele
         document.getElementById("login-btn").classList.add("hidden");
@@ -224,12 +238,4 @@ function login() {
     }
 }
 
-function logout() {
-    // Skrytí panelu a zobrazení tlačítka Login
-    document.getElementById("user-panel").classList.add("hidden");
-    document.getElementById("login-btn").classList.remove("hidden");
-
-    // Skrytí admin panelu
-    document.getElementById("admin-panel").classList.add("hidden");
-}
 </script>

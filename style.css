@@ -4,3 +4,11 @@ body {
     background-color: #1e1e1e;
     color: white;
 }
+#login-success-message {
+    opacity: 1;
+    transition: opacity 5s ease-out;
+}
+
+#login-success-message.hidden {
+    opacity: 0;
+}
