@@ -42,55 +42,108 @@
             z-index: 10;
         }
 
+        .social-links {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: rgb(214, 214, 214);
+            transition: color 0.3s ease;
+        }
+
+        .social-icon {
+            margin-right: 2px;
+        }
+
+        .youtube-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .instagram-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .social-link span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-left: 12px;
+        }
+
+        .social-link:hover span {
+            color: rgb(243, 167, 167);
+        }
+
+        .social-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Nový styl pro hlášení o úspěšném přihlášení */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+            opacity: 0;
+            transition: opacity 3s ease-out;
+            z-index: 999;
+            width: auto;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success-message img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .success-message-text {
+            font-size: 1rem;
+        }
+
+        /* Flex pro logo a tlačítko Login vedle sebe */
         .nav-items {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
+        /* Styly pro tlačítko Login */
         #login-btn {
-            background-color: #ffbb00;
-            padding: 8px 16px;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1rem;
-            color: white;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
+        background-color: #ffbb00; /* Žlutá barva */
+        padding: 8px 16px; /* Menší výška a větší šířka pro tenčí vzhled */
+        border-radius: 5px; /* Zaoblení rohů */
+        text-align: center;
+        font-weight: bold;
+        font-size: 1rem;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-        #login-btn:hover {
-            background-color: #f1b715;
-            transform: scale(1.05);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-left: auto;
-        }
-
-        .user-info img {
-            margin-right: 10px;
-        }
-
-        .user-info span {
-            color: white;
-            font-weight: bold;
-        }
-
-        .user-info button {
-            background-color: #ff5555;
-            padding: 8px 16px;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .user-info button:hover {
-            background-color: #e53e3e;
-        }
+    #login-btn:hover {
+        background-color: #f1b715; /* Tmavší žlutá při hoveru */
+        transform: scale(1.05); /* Malé zvětšení při najetí */
+    }
     </style>
 </head>
 <body class="text-white">
@@ -107,7 +160,7 @@
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
             <a href="application.html" class="nav-link font-bold">APPLICATION</a>
-            <a href="tickets.html" class="nav-link font-bold">TICKETS</a>
+            <a href="tickets.html" class="nav-link font-bold" id="tickets-link">TICKETS</a>
         </div>
 
         <!-- Login/Logout Panel -->
@@ -146,68 +199,107 @@
         </h1>
     </div>
 
+    <!-- Success Message -->
+    <div id="success-message" class="success-message">
+        <span id="check-icon">✔</span>
+        <span class="success-message-text">Login successful!</span>
+    </div>
+
+    <!-- Socia Links (YouTube & Instagram) -->
+    <div class="social-links">
+        <a href="https://www.youtube.com/YourClanChannel" class="social-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="youtube-icon">
+            <span>YouTube</span>
+        </a>
+        <a href="https://www.instagram.com/lovely.dominance/?hl=en" class="social-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="instagram-icon">
+            <span>Instagram</span>
+        </a>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
-
+    
             const loggedInUser = localStorage.getItem("loggedInUser");
             if (loggedInUser) {
                 const user = JSON.parse(loggedInUser);
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-
+    
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+                }
+    
                 document.getElementById("login-btn").classList.add("hidden");
             } else {
                 document.getElementById("login-btn").classList.remove("hidden");
                 document.getElementById("user-panel").classList.add("hidden");
+                document.getElementById("admin-panel").classList.add("hidden");
             }
         });
-
+    
         const loginBtn = document.getElementById("login-btn");
         const modal = document.getElementById("login-modal");
-
+    
         loginBtn.addEventListener("click", () => {
             modal.classList.remove("hidden");
         });
-
+    
         function closeModal() {
             modal.classList.add("hidden");
             document.getElementById("error-message").classList.add("hidden");
         }
-
+    
         function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
-
+    
             const users = [
                 { username: "Avely_", password: "admin", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
-                { username: "Lonely_Thoughts", password: "admin", skin: "https://visage.surgeplay.com/bust/128/6f1da6f9-1934-4538-bfcb-812453f62945", isAdmin: false },
+                { username: "Lonely_Thoughts", password: "admin", skin: "https://visage.surgeplay.com/bust/128/6f1da6f9-1934-4538-bfcb-812453f62945", isAdmin: true },
             ];
-
+    
             const user = users.find(account => account.username === username && account.password === password);
-
+    
             if (user) {
-                alert("Login successful!");
                 closeModal();
-
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-
                 document.getElementById("login-btn").classList.add("hidden");
+    
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+                }
+    
+                const successMessage = document.getElementById("success-message");
+                successMessage.style.display = "flex";
+                setTimeout(() => {
+                    successMessage.style.opacity = 1;
+                }, 100);
+    
+                setTimeout(() => {
+                    successMessage.style.opacity = 0;
+                }, 3000);
+    
+                setTimeout(() => {
+                    successMessage.style.display = "none";
+                }, 3500);
             } else {
                 errorMessage.classList.remove("hidden");
             }
         }
-
+    
         function logout() {
             localStorage.removeItem("loggedInUser");
-            window.location.reload();
+            document.getElementById("user-panel").classList.add("hidden");
+            document.getElementById("login-btn").classList.remove("hidden");
+            document.getElementById("admin-panel").classList.add("hidden");
         }
     </script>
-
 </body>
 </html>
