@@ -87,6 +87,38 @@
         .social-link:hover {
             opacity: 0.7;
         }
+
+        /* Úpravy pro panel uživatele */
+        #user-panel img {
+            width: 50px; /* Zvýšení velikosti obrázku */
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        #user-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #user-panel span {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            margin-top: 10px;
+        }
+
+        #user-panel button {
+            font-size: 0.875rem;
+            margin-top: 10px;
+            padding: 6px 12px;
+        }
+
+        #logout-btn {
+            font-size: 0.875rem;
+            padding: 6px 12px;
+        }
     </style>
 </head>
 <body class="text-white">
@@ -113,7 +145,7 @@
 
             <!-- Uživatelský panel (zobrazí se po přihlášení) -->
             <div id="user-panel" class="hidden flex items-center space-x-4">
-                <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
+                <img id="user-skin" src="" alt="User Skin" class="w-20 h-20 rounded-full">
                 <span id="user-name" class="text-white font-bold"></span>
                 <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
                     Odhlásit se
@@ -184,7 +216,7 @@ function login() {
 
     // Mock uživatelů (admin a běžný uživatel)
     const users = [
-        { username: "Avely", password: "admin", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
+        { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
     ];
 
     // Najděte uživatele podle jména a hesla
