@@ -199,8 +199,6 @@
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
                     const tickets = [
-                        { id: 1, title: "Ticket 1", description: "Some issue" },
-                        { id: 2, title: "Ticket 2", description: "Another issue" }
                     ];
                     const ticketsList = document.getElementById("tickets-list");
                     ticketsList.innerHTML = tickets.map(ticket => `
