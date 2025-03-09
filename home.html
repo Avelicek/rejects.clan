@@ -7,6 +7,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    
 
     <style>
         body {
@@ -191,38 +193,26 @@ function login() {
 
     // Mock uživatelů (admin a běžný uživatel)
     const users = [
-        { username: "Avely", password: "admin", skin: "https://visage.surgeplay.com/bust/128/42ae944a-92d5-4fe3-b11b-5ea907d86aad", isAdmin: true },
+        { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
     ];
 
     // Najděte uživatele podle jména a hesla
     const user = users.find(account => account.username === username && account.password === password);
 
     if (user) {
-        // Skrytí modalu a zobrazení login zprávy
+        alert("Login successful!");
         closeModal();
 
-        // Zobrazit zprávu o úspěšném přihlášení
-        const successMessage = document.getElementById("login-success-message");
-        successMessage.classList.remove("hidden");
+        // Uložení přihlášeného uživatele
+        user.timestamp = new Date().getTime();
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-        // Zpráva zmizí po 3 sekundách (nastavit si můžeš podle potřeby)
-        setTimeout(() => {
-            successMessage.classList.add("hidden");
-        }, 3000);
-
-        // Uložení stavu přihlášení do localStorage
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("username", user.username);
-        localStorage.setItem("isAdmin", user.isAdmin);
-        localStorage.setItem("skin", user.skin);
-
-        // Skrytí tlačítka Login a zobrazení panelu uživatele
-        document.getElementById("login-btn").classList.add("hidden");
+        // Zobrazení uživatelského panelu
         document.getElementById("user-panel").classList.remove("hidden");
         document.getElementById("user-skin").src = user.skin;
         document.getElementById("user-name").innerText = user.username;
 
-        // Pokud je uživatel administrátor, zobrazí se admin panel
+        // Pokud je to administrátor, zobrazíme admin panel
         if (user.isAdmin) {
             document.getElementById("admin-panel").classList.remove("hidden");
 
