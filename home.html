@@ -127,12 +127,22 @@
 
     <!-- Uživatelský panel (zobrazí se po přihlášení) -->
     <div id="user-panel" class="hidden flex items-center space-x-4 ml-auto mr-6">
-         <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
+            <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
             <span id="user-name" class="text-white font-bold"></span>
             <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
         Odhlásit se
      </button>
     </div>
+
+    <!-- Sekce pro administrátory (zobrazí se pouze pro administrátory) -->
+    <div id="admin-panel" class="hidden mt-8">
+            <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
+    <!-- Zde budou zobrazeny tickety -->
+            <div id="tickets-list" class="text-white">
+        <!-- Tickety budou načítány zde pomocí JavaScriptu -->
+    </div>
+</div>
+
 
     <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
@@ -155,32 +165,63 @@
 
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.body.classList.add("loaded");
-    });
+function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorMessage = document.getElementById("error-message");
 
-    const loginBtn = document.getElementById("login-btn");
-    const modal = document.getElementById("login-modal");
+    // Příklad uživatelských účtů a administrátorů
+    const users = [
+        { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
+        { username: "user1", password: "user1pass", skin: "https://example.com/user1-skin.png", isAdmin: false }
+    ];
 
-    loginBtn.addEventListener("click", () => {
-        modal.classList.remove("hidden");
-    });
+    // Hledáme odpovídající uživatelský účet
+    const user = users.find(account => account.username === username && account.password === password);
 
-    function closeModal() {
-        modal.classList.add("hidden");
-        document.getElementById("error-message").classList.add("hidden");
-    }
+    if (user) {
+        alert("Login successful!");
+        closeModal();
 
-    function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const errorMessage = document.getElementById("error-message");
+        // Zobrazení uživatelského panelu
+        document.getElementById("user-panel").classList.remove("hidden");
+        document.getElementById("user-skin").src = user.skin;
+        document.getElementById("user-name").innerText = user.username;
 
-        if (username === "admin" && password === "admin") {
-            alert("Login successful!");
-            closeModal();
-        } else {
-            errorMessage.classList.remove("hidden");
+        // Zobrazení administrátorského panelu pro admina
+        if (user.isAdmin) {
+            document.getElementById("admin-panel").classList.remove("hidden");
+            // Zde načteme tickety (například z mocku)
+            const tickets = [
+                { id: 1, title: "Ticket 1", description: "Some issue" },
+                { id: 2, title: "Ticket 2", description: "Another issue" }
+            ];
+
+            const ticketsList = document.getElementById("tickets-list");
+            ticketsList.innerHTML = tickets.map(ticket => `
+                <div class="bg-gray-800 p-4 mb-4 rounded-lg">
+                    <h3 class="font-bold text-xl">${ticket.title}</h3>
+                    <p>${ticket.description}</p>
+                </div>
+            `).join('');
         }
+    } else {
+        errorMessage.classList.remove("hidden");
     }
+}
+
+function logout() {
+    // Skrýt uživatelský panel a admin panel při odhlášení
+    document.getElementById("user-panel").classList.add("hidden");
+    document.getElementById("admin-panel").classList.add("hidden");
+
+    // Resetovat pole pro skin a jméno
+    document.getElementById("user-skin").src = "";
+    document.getElementById("user-name").innerText = "";
+
+    // Zobrazit opět login modal
+    const loginModal = document.getElementById("login-modal");
+    loginModal.classList.remove("hidden");
+}
+
 </script>
