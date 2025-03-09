@@ -171,15 +171,14 @@
 
         <!-- Navigační položky pro Login, jméno a odhlášení -->
         <div class="user-info">
-            <!-- Login Button -->
-            <div class="ml-auto mr-6" id="login-container">
-                <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
-                    Login
-                </button>
-            </div>
-
-            <!-- Uživatelský panel -->
-            <div id="user-panel" class="hidden flex items-center space-x-4 ml-auto mr-6">
+        <!-- Login/Logout Panel -->
+        <div class="ml-auto flex items-center space-x-4">
+            <!-- Tlačítko pro přihlášení, bude nahrazeno profilem -->
+            <button id="login-btn" class="login-btn">
+                Login
+            </button>
+            <!-- Uživatel (obrázek, jméno, odhlásit) -->
+            <div id="user-panel" class="hidden flex items-center space-x-4">
                 <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
                 <span id="user-name" class="text-white font-bold"></span>
                 <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
@@ -188,7 +187,7 @@
             </div>
         </div>
     </nav>
-
+    
     <!-- Login Modal -->
     <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
