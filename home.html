@@ -121,25 +121,7 @@
             <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
             <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
             <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
-            <p id="error-message" class="text-red-500 hidden mt-2">Nesprávné heslo nebo uživatelské jméno</p>
-        </div><!-- Uživatelský panel (zobrazí se po přihlášení) -->
-<div id="user-panel" class="hidden flex items-center space-x-4 ml-auto mr-6">
-    <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
-    <span id="user-name" class="text-white font-bold"></span>
-    <button id="logout-btn" onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
-        Odhlásit se
-    </button>
-</div>
-
-<!-- Sekce pro administrátory (zobrazí se pouze pro administrátory) -->
-<div id="admin-panel" class="hidden mt-8">
-    <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
-    <!-- Zde budou zobrazeny tickety -->
-    <div id="tickets-list" class="text-white">
-        <!-- Tickety budou načítány zde pomocí JavaScriptu -->
-    </div>
-</div>
-
+        </div>
     </div>
 
     <!-- Hlavní text -->
@@ -162,7 +144,31 @@
     </div>
 
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.classList.add("loaded");
+    });
 
+    const loginBtn = document.getElementById("login-btn");
+    const modal = document.getElementById("login-modal");
 
+    loginBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+    });
+
+    function closeModal() {
+        modal.classList.add("hidden");
+    }
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === "admin" && password === "admin") {
+            alert("Login successful!");
+            closeModal();
+        } else {
+            alert("Invalid credentials!");
+        }
+    }
 </script>
-
