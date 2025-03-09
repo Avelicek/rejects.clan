@@ -204,10 +204,10 @@ function login() {
         // Zobrazit zprávu o úspěšném přihlášení
         const successMessage = document.getElementById("login-success-message");
         successMessage.classList.remove("hidden");
-        
+
         // Zpráva zmizí po 3 sekundách (nastavit si můžeš podle potřeby)
         setTimeout(() => {
-            successMessage.classList.add("hidden");
+            successMessage.classList.add("fade-out"); // Přidání třídy pro animaci zmizení
         }, 3000);
 
         // Skrytí tlačítka Login a zobrazení panelu uživatele
