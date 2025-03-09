@@ -210,6 +210,12 @@ function login() {
             successMessage.classList.add("fade-out"); // Přidání třídy pro animaci zmizení
         }, 3000);
 
+        // Uložení stavu přihlášení do localStorage
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("isAdmin", user.isAdmin);
+        localStorage.setItem("skin", user.skin);
+
         // Skrytí tlačítka Login a zobrazení panelu uživatele
         document.getElementById("login-btn").classList.add("hidden");
         document.getElementById("user-panel").classList.remove("hidden");
@@ -238,5 +244,6 @@ function login() {
         errorMessage.classList.remove("hidden");
     }
 }
+
 
 </script>
