@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LD │ Contacts</title>
+    <title>LD │ Homepage</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -91,55 +91,61 @@
             opacity: 0.7;
         }
 
-        .contact-container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            border-radius: 8px;
-        }
-
-        .contact-container h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .contact-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #333;
+        /* Nový styl pro hlášení o úspěšném přihlášení */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
             color: white;
-        }
-
-        .contact-textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 15px;
             border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #333;
-            color: white;
-            height: 150px;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+            opacity: 0;
+            transition: opacity 3s ease-out;
+            z-index: 999;
+            width: auto;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .contact-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #e92fd0;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
+        .success-message img {
+            width: 20px;
+            height: 20px;
         }
 
-        .contact-button:hover {
-            background-color: #f036b3;
+        .success-message-text {
+            font-size: 1rem;
         }
+
+        /* Flex pro logo a tlačítko Login vedle sebe */
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Styly pro tlačítko Login */
+        #login-btn {
+        background-color: #da4646; /* Žlutá barva */
+        padding: 8px 16px; /* Menší výška a větší šířka pro tenčí vzhled */
+        border-radius: 5px; /* Zaoblení rohů */
+        text-align: center;
+        font-weight: bold;
+        font-size: 1rem;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #login-btn:hover {
+        background-color: #bf3131; /* Tmavší žlutá při hoveru */
+        transform: scale(1.05); /* Malé zvětšení při najetí */
+    }
     </style>
 </head>
 <body class="text-white">
@@ -155,13 +161,16 @@
             <a href="home.html" class="nav-link font-bold">HOME</a>
             <a href="clan-members.html" class="nav-link font-bold">CLAN MEMBERS</a>
             <a href="informations.html" class="nav-link font-bold">INFORMATIONS</a>
+            <a href="contacts.html" class="nav-link font-bold">CONTACTS</a>
         </div>
 
         <!-- Login/Logout Panel -->
         <div class="ml-auto mr-6" id="auth-panel">
+            <!-- Tlačítko pro přihlášení, bude nahrazeno profilem -->
             <button id="login-btn" class="bg-red-500 px-4 py-2 rounded-lg text-white font-bold hover:bg-red-600">
                 Login
             </button>
+            <!-- Uživatel (obrázek, jméno, odhlásit) -->
             <div id="user-panel" class="hidden flex items-center space-x-4">
                 <img id="user-skin" src="" alt="User Skin" class="w-8 h-8 rounded-full">
                 <span id="user-name" class="text-white font-bold"></span>
@@ -172,15 +181,41 @@
         </div>
     </nav>
 
-    <!-- Kontaktní formulář -->
-    <div class="contact-container">
-        <h2>Kontaktujte nás</h2>
-        <form id="contact-form">
-            <input type="text" id="name" class="contact-input" placeholder="Vaše jméno" required>
-            <input type="email" id="email" class="contact-input" placeholder="Váš email" required>
-            <textarea id="message" class="contact-textarea" placeholder="Zpráva" required></textarea>
-            <button type="submit" class="contact-button">Odeslat zprávu</button>
-        </form>
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-[#060608] p-6 rounded-lg w-80 text-center">
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <input id="username" type="text" placeholder="Username" class="w-full p-2 mb-2 rounded-lg bg-gray-800 text-white">
+            <input id="password" type="password" placeholder="Password" class="w-full p-2 mb-4 rounded-lg bg-gray-800 text-white">
+            <button onclick="login()" class="w-full bg-red-500 p-2 rounded-lg font-bold hover:bg-red-600">Login</button>
+            <button onclick="closeModal()" class="w-full mt-2 text-white">Close</button>
+            <p id="error-message" class="text-red-500 hidden mt-2">Wrong username or password!</p>
+        </div>
+    </div>
+
+    <!-- Hlavní text -->
+    <div class="text-center p-10" style="padding-top: 50px;">
+        <h1 class="text-8xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">
+            Minemen PvP Club
+        </h1>
+    </div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-message">
+        <span id="check-icon">✔</span>
+        <span class="success-message-text">Login successful!</span>
+    </div>
+
+    <!-- Socia Links (YouTube & Instagram) -->
+    <div class="social-links">
+        <a href="https://www.youtube.com/YourClanChannel" class="social-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" class="youtube-icon">
+            <span>YouTube</span>
+        </a>
+        <a href="https://www.instagram.com/lovely.dominance/?hl=en" class="social-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="instagram-icon">
+            <span>Instagram</span>
+        </a>
     </div>
 
     <script>
@@ -202,6 +237,25 @@
 
                 // Skrytí tlačítka Login
                 document.getElementById("login-btn").classList.add("hidden");
+
+                // Pokud je to administrátor, zobrazíme admin panel
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+
+                    // Načítání ticketů (mock data)
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="admin-ticket">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
+                }
             }
         });
 
@@ -247,6 +301,25 @@
 
                 // Skrytí tlačítka Login
                 document.getElementById("login-btn").classList.add("hidden");
+
+                // Pokud je to administrátor, zobrazíme admin panel
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+
+                    // Načítání ticketů (mock data)
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="admin-ticket">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
+                }
             } else {
                 errorMessage.classList.remove("hidden");
             }

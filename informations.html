@@ -83,6 +83,8 @@
             color: #6f6f70;
             line-height: 1.6;
             margin-bottom: 20px;
+            max-width: 800px;  /* Omezíme šířku textu */
+            margin: 0 auto;  /* Vycentrujeme text */
         }
 
         .info-text h2 {
@@ -146,6 +148,13 @@
             font-size: 0.9rem;
             color: #23232c;
         }
+
+        /* Pro responzivitu pro menší obrazovky */
+        @media (max-width: 768px) {
+            .info-text {
+                max-width: 100%;  /* Na menších obrazovkách využijeme celou šířku */
+            }
+        }
     </style>
 </head>
 <body class="text-white">
@@ -171,28 +180,25 @@
         <h1 class="text-8xl font-bold text-white transition-all duration-300 hover:text-red-500">INFORMATIONS</h1>
     </div>
 
-<!-- Sekce pro informace -->
-<div class="info-section">
-    <div class="info-header">
-        <h1 class="text-left mb-12 text-white">Frequently Asked Questions</h1>
+    <!-- Sekce pro informace -->
+    <div class="info-section">
+        <div class="info-header">
+            <h1 class="text-left mb-12 text-white">Frequently Asked Questions</h1>
+        </div>
+        <div class="info-text">
+            <h2 class="text-white">Who are you?</h2> <!-- Bílý text pro otázku -->
+            <p class="font-bold text-white">We are a clan of PVP players focused on active gaming. We try to play as best as possible. Our clan has a lot of good players who have a lot to offer.</p> <!-- Bílý text pro odpověď -->
+
+            <h2 class="text-white">How can I join you?</h2> <!-- Bílý text pro otázku -->
+            <p class="font-bold text-white">You can join us by contacting one of us. For more information about contacting us, please visit the "Contacts" page.</p> <!-- Bílý text pro odpověď -->
+
+            <h2 class="text-white">What gamemodes does your clan play the most?</h2> <!-- Bílý text pro otázku -->
+            <p class="font-bold text-white">Our clan focuses on all gamemodes. Players in our clan play a variety of different gamemodes. We have very good Boxing players, Sumo players, RodPvP players, PotPvP is also not bad. etc.</p> <!-- Bílý text pro odpověď -->
+
+            <h2 class="text-white">Who is the CEO of the clan?</h2> <!-- Bílý text pro otázku -->
+            <p class="font-bold text-white">The CEO of the clan is Avely. More information about the clan members can be found in the CLAN-MEMBERS section</p> <!-- Bílý text pro odpověď -->
+        </div>
     </div>
-    <div class="info-text">
-        <h2 class="text-white">Who are you?</h2> <!-- Bílý text pro otázku -->
-        <p class="font-bold text-white">We are a clan of PVP players focused on active gaming. We try to play as best as possible. Our clan has a lot of good players who have a lot to offer.</p> <!-- Bílý text pro odpověď -->
-
-        <h2 class="text-white">How can I join you?</h2> <!-- Bílý text pro otázku -->
-        <p class="font-bold text-white">You can join us by contacting one of us. For more information about contacting us, please visit the "Contacts" page.</p> <!-- Bílý text pro odpověď -->
-
-        <h2 class="text-white">What gamemodes does your clan play the most?</h2> <!-- Bílý text pro otázku -->
-        <p class="font-bold text-white">Our clan focuses on all gamemodes. Players in our clan play a variety of different gamemodes. We have very good Boxing players, Sumo players, RodPvP players, PotPvP is also not bad. etc.</p> <!-- Bílý text pro odpověď -->
-
-        <h2 class="text-white">Who is the CEO of the clan?</h2> <!-- Bílý text pro otázku -->
-        <p class="font-bold text-white">The CEO of the clan is Avely. More information about the clan members can be found in the CLAN-MEMBERS section</p> <!-- Bílý text pro odpověď -->
-    </div>
-</div>
-
-
-
 
 </body>
 <script>
