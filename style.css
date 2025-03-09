@@ -6,9 +6,25 @@ body {
 }
 #login-success-message {
     opacity: 1;
-    transition: opacity 5s ease-out;
+    transition: opacity 3s ease-out;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #login-success-message.hidden {
     opacity: 0;
+}
+
+/* Efekt pro symbol ✔ a text zprávy */
+#check-icon {
+    font-size: 1.5rem;  /* Velikost symbolu */
+    margin-right: 8px;   /* Mezera mezi symbolem a textem */
+}
+
+#login-success-message span {
+    font-size: 1rem;
 }
