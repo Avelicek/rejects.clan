@@ -220,62 +220,111 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add("loaded");
-    
+
+            // Pokud uživatel není přihlášený a chce přístup k ticketům
             const loggedInUser = localStorage.getItem("loggedInUser");
-            if (loggedInUser) {
+
+            if (!loggedInUser) {
+                document.getElementById("access-denied").classList.remove("hidden");
+            } else {
                 const user = JSON.parse(loggedInUser);
+
+                // Zobrazení uživatelského panelu
                 document.getElementById("user-panel").classList.remove("hidden");
                 document.getElementById("user-skin").src = user.skin;
                 document.getElementById("user-name").innerText = user.username;
-    
+
+                // Skrytí tlačítka Login
+                document.getElementById("login-btn").classList.add("hidden");
+
+                // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
+
+                    // Načítání ticketů (mock data)
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="admin-ticket">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
                 }
-    
-                document.getElementById("login-btn").classList.add("hidden");
-            } else {
-                document.getElementById("login-btn").classList.remove("hidden");
-                document.getElementById("user-panel").classList.add("hidden");
             }
         });
-    
+
+        const loginBtn = document.getElementById("login-btn");
+        const modal = document.getElementById("login-modal");
+
+        loginBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
+
+        function closeModal() {
+            modal.classList.add("hidden");
+            document.getElementById("error-message").classList.add("hidden");
+        }
+
         function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-    
-            if (username === "admin" && password === "admin123") {
-                const user = {
-                    username: username,
-                    skin: "https://minotar.net/helm/!" + username,
-                    isAdmin: true
-                };
+            const errorMessage = document.getElementById("error-message");
+
+            // Mock uživatelů (admin a běžný uživatel)
+            const users = [
+                { username: "admin", password: "admin", skin: "https://example.com/admin-skin.png", isAdmin: true },
+            ];
+
+            // Najděte uživatele podle jména a hesla
+            const user = users.find(account => account.username === username && account.password === password);
+
+            if (user) {
+                alert("Login successful!");
+                closeModal();
+
+                // Uložení přihlášeného uživatele
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-                document.getElementById("login-modal").classList.add("hidden");
-                window.location.reload();
-                displaySuccessMessage();
+
+                // Zobrazení uživatelského panelu
+                document.getElementById("user-panel").classList.remove("hidden");
+                document.getElementById("user-skin").src = user.skin;
+                document.getElementById("user-name").innerText = user.username;
+
+                // Skrytí tlačítka Login
+                document.getElementById("login-btn").classList.add("hidden");
+
+                // Pokud je to administrátor, zobrazíme admin panel
+                if (user.isAdmin) {
+                    document.getElementById("admin-panel").classList.remove("hidden");
+
+                    // Načítání ticketů (mock data)
+                    const tickets = [
+                        { id: 1, title: "Ticket 1", description: "Some issue" },
+                        { id: 2, title: "Ticket 2", description: "Another issue" }
+                    ];
+
+                    const ticketsList = document.getElementById("tickets-list");
+                    ticketsList.innerHTML = tickets.map(ticket => `
+                        <div class="admin-ticket">
+                            <h3 class="font-bold text-xl">${ticket.title}</h3>
+                            <p>${ticket.description}</p>
+                        </div>
+                    `).join('');
+                }
             } else {
-                document.getElementById("error-message").classList.remove("hidden");
+                errorMessage.classList.remove("hidden");
             }
-        }
-    
-        function closeModal() {
-            document.getElementById("login-modal").classList.add("hidden");
         }
 
         function logout() {
+            // Odstranění uživatele z localStorage a přesměrování na stránku
             localStorage.removeItem("loggedInUser");
             window.location.reload();
-        }
-
-        function displaySuccessMessage() {
-            const successMessage = document.getElementById("success-message");
-            successMessage.style.display = "flex";
-            setTimeout(() => {
-                successMessage.style.opacity = 1;
-            }, 100);
-            setTimeout(() => {
-                successMessage.style.opacity = 0;
-            }, 3000);
         }
     </script>
 </body>
