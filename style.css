@@ -25,6 +25,30 @@ body {
     margin-right: 8px;   /* Mezera mezi symbolem a textem */
 }
 
-#login-success-message span {
+#login-success-message span
     font-size: 1rem;
-}
+    .hidden {
+        display: none;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    
+    #user-form, #user-info {
+        margin-bottom: 20px;
+    }
+    
+    button {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    

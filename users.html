@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uživatelský panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Registrace / Přihlášení</h2>
+
+    <!-- Formulář pro uživatelská data -->
+    <form id="user-form">
+        <label for="username">Uživatelské jméno</label>
+        <input type="text" id="username" required><br>
+
+        <label for="user-skin">URL obrázku (Skin)</label>
+        <input type="url" id="user-skin" required><br>
+
+        <label for="isAdmin">Je administrátor?</label>
+        <input type="checkbox" id="isAdmin"><br>
+
+        <button type="button" onclick="saveUserData()">Uložit uživatele</button>
+    </form>
+
+    <!-- Informace o přihlášeném uživateli -->
+    <div id="user-info" class="hidden">
+        <h3>Uživatelské údaje</h3>
+        <p><strong>Jméno:</strong> <span id="user-name"></span></p>
+        <p><strong>Obrázek:</strong></p>
+        <img id="user-skin-display" alt="User Skin" width="100"><br>
+        <p><strong>Administrátor:</strong> <span id="is-admin"></span></p>
+        <button onclick="logout()">Odhlásit se</button>
+    </div>
+
+    <script src="users.js" defer></script>
+</body>
+</html>
