@@ -192,6 +192,9 @@
         <div id="tickets-list" class="text-white">
             <!-- Tickety se načtou zde -->
         </div>
+    <!-- Hlášení pro nepřihlášené uživatele -->
+    <div id="access-denied-message" class="access-denied-message">
+        <span>You don't have access to this page!</span>
     </div>
 
     <!-- Success Message -->
@@ -238,11 +241,15 @@
 
                 // Skrýt tlačítko Login
                 document.getElementById("login-btn").classList.add("hidden");
+                document.getElementById("access-denied-message").style.display = 'none';
             } else {
                 // Zobrazí tlačítko Login, pokud uživatel není přihlášený
                 document.getElementById("login-btn").classList.remove("hidden");
                 document.getElementById("user-panel").classList.add("hidden");
                 document.getElementById("admin-panel").classList.add("hidden");
+
+                // Zobrazí zprávu "You don't have access to this page!" pro nepřihlášené uživatele
+                document.getElementById("access-denied-message").style.display = 'block';
             }
         });
 
