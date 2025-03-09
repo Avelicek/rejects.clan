@@ -60,7 +60,7 @@
         }
 
         .social-icon {
-            margin-right: 10px;
+            margin-right: 15px; /* Zvýšení vzdálenosti mezi ikonami a textem */
         }
 
         .youtube-icon {
@@ -168,14 +168,6 @@
         </div>
     </div>
 
-    <!-- Administrátorský panel pro tickety -->
-    <div id="admin-panel" class="hidden mt-8">
-        <h2 class="text-2xl font-bold text-white mb-4">Tickets</h2>
-        <div id="tickets-list" class="text-white">
-            <!-- Tickety se načtou zde -->
-        </div>
-    </div>
-
     <!-- Hlavní text -->
     <div class="text-center p-10" style="padding-top: 50px;">
         <h1 class="text-8xl font-bold text-white-500 transition-all duration-300 hover:text-red-500">
@@ -216,17 +208,6 @@
                 // Pokud je administrátor, zobrazí se admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
-                    const tickets = [
-                        { id: 1, title: "Ticket 1", description: "Some issue" },
-                        { id: 2, title: "Ticket 2", description: "Another issue" }
-                    ];
-                    const ticketsList = document.getElementById("tickets-list");
-                    ticketsList.innerHTML = tickets.map(ticket => `
-                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
-                            <h3 class="font-bold text-xl">${ticket.title}</h3>
-                            <p>${ticket.description}</p>
-                        </div>
-                    `).join('');
                 }
 
                 // Skrýt tlačítko Login
@@ -283,19 +264,6 @@
                 // Pokud je to administrátor, zobrazíme admin panel
                 if (user.isAdmin) {
                     document.getElementById("admin-panel").classList.remove("hidden");
-
-                    // Načítání ticketů (mock data)
-                    const tickets = [
-                        { id: 1, title: "Ticket 1", description: "Some issue" },
-                        { id: 2, title: "Ticket 2", description: "Another issue" }
-                    ];
-                    const ticketsList = document.getElementById("tickets-list");
-                    ticketsList.innerHTML = tickets.map(ticket => `
-                        <div class="bg-gray-800 p-4 mb-4 rounded-lg">
-                            <h3 class="font-bold text-xl">${ticket.title}</h3>
-                            <p>${ticket.description}</p>
-                        </div>
-                    `).join('');
                 }
 
                 // Zobrazení success zprávy
